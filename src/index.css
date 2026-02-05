@@ -1,0 +1,32 @@
+@font-face {
+    font-family:Montserrat ;
+    src: url("../src/assets/Fonts/Montserrat-Light.ttf");
+}
+@import "tailwindcss";
+@theme{
+        --font-Montserrat: Montserrat, "sans-serif";
+        --breakpoint-md: 870px;    
+    }
+
+@layer utilities{
+    .animate-in {
+        animation-fill-mode: both;
+    }
+    .slide-in-from-top{
+        animation-name: slideInFromTop;
+    }
+    .duration-300{
+        animation-duration: 500ms;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
