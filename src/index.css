@@ -3,6 +3,11 @@
     src: url("../src/assets/Fonts/Montserrat-Light.ttf");
 }
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+html.lenis, html.lenis body {
+    height: auto;
+}
 @theme{
         --font-Montserrat: Montserrat, "sans-serif";
         --breakpoint-md: 870px;    
