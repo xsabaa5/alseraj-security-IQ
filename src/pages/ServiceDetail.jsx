@@ -280,7 +280,7 @@ export default function ServiceDetail() {
         to="/"
         className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#e93d59] rounded-full
           text-[#e93d59] text-sm font-normal tracking-wide
-          hover:bg-[#e93d59] hover:text-white transition-all duration-300 group mb-16"
+          hover: hover:text-white transition-all duration-300 group mb-16"
       >
         <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
         <span>Back to Home</span>

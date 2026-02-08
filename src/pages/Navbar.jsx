@@ -83,7 +83,7 @@ export default function NavBar() {
 
         {/* Desktop CTA */}
         <Link
-          to="/store"
+          to="/coming-soon"
           className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4.5 py-2.5 text-[13px] text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 lg:flex"
         >
           Online Store
@@ -143,7 +143,7 @@ export default function NavBar() {
 
         {/* Mobile CTA */}
         <Link
-          to="/store"
+          to="/coming-soon"
           onClick={() => setMenuOpen(false)}
           className={`mt-8 rounded-full border border-white/10 bg-white/6 px-7 py-3.5 text-[15px] text-white/90 transition-all duration-400 hover:bg-white/10 ${
             menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"

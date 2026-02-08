@@ -28,7 +28,7 @@ function About() {
 
     const chars = el.querySelectorAll(".char");
 
-    gsap.fromTo(
+    const anim = gsap.fromTo(
       chars,
       { opacity: 0.2 },
       {
@@ -45,7 +45,8 @@ function About() {
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      anim.scrollTrigger?.kill();
+      anim.kill();
     };
   }, []);
 

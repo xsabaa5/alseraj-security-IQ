@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import {
   FaLinkedinIn,
   FaYoutube,
@@ -45,7 +45,7 @@ export default function Footer() {
 
     gsap.set(children, { opacity: 0, y: 40 });
 
-    gsap.to(children, {
+    const anim = gsap.to(children, {
       opacity: 1,
       y: 0,
       duration: 0.8,
@@ -57,7 +57,10 @@ export default function Footer() {
       },
     });
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => {
+      anim.scrollTrigger?.kill();
+      anim.kill();
+    };
   }, []);
 
   return (
@@ -67,9 +70,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
           {/* Brand */}
           <div className="footer-animate">
-            <h2 className="text-white text-3xl tracking-widest font-light mb-5">
-              ALSERAJ
-            </h2>
+            <Link to="#home">
+              <img
+                src="/logo.png"
+                alt="Al Seraj Company Logo"
+                className="h-auto w-50 mb-5"
+              />
+            </Link>
             <p className="text-gray-500 text-sm mb-8">
               Powering digital transformation since 1996
             </p>
