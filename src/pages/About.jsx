@@ -64,7 +64,7 @@ function About() {
       <div className="px-[5%]">
         <h1
           ref={textRef}
-          className="font-thin text-[clamp(1.5rem,4vw,2.5rem)] max-w-197.5 leading-relaxed"
+          className=" text-[clamp(1.5rem,4vw,2.3rem)] max-w-200 leading-relaxed tracking-tighter"
         >
           {splitText}
         </h1>

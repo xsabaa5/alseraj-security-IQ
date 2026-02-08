@@ -1,12 +1,16 @@
 @font-face {
-    font-family:Montserrat ;
-    src: url("../src/assets/Fonts/Montserrat-Light.ttf");
+    font-family: Montserrat;
+    src: url("./assets/Fonts/Montserrat-Light.ttf");
 }
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
 html.lenis, html.lenis body {
     height: auto;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
 }
 @theme{
         --font-Montserrat: Montserrat, "sans-serif";
