@@ -47,7 +47,7 @@ export default function ComingSoon() {
           to="/"
           className="inline-flex items-center gap-3 px-10 py-4.5 border-2 border-[#e93d59] rounded-full
             text-[#e93d59] text-[clamp(0.9rem,2vw,1.1rem)] font-normal tracking-[1px]
-            hover:bg-[#e93d59] hover:text-white transition-all duration-400 cursor-pointer
+            hover: hover:text-white transition-all duration-400 cursor-pointer
             animate-fade-in-up group"
           style={{ "--delay": "0.9s" }}
         >

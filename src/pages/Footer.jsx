@@ -24,11 +24,11 @@ const company = [
 ];
 
 const socials = [
-  { icon: FaLinkedinIn, href: "#" },
-  { icon: FaYoutube, href: "#" },
-  { icon: FaFacebookF, href: "#" },
-  { icon: FaInstagram, href: "#" },
-  { icon: FaTiktok, href: "#" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/34934372/admin/feed/posts/" },
+  { icon: FaYoutube, href: "https://www.youtube.com/@alserajcompany2735" },
+  { icon: FaFacebookF, href: "https://www.facebook.com/Alseraj.almodeeh/" },
+  { icon: FaInstagram, href: "https://www.instagram.com/alseraj.co/" },
+  { icon: FaTiktok, href: "https://www.tiktok.com/@alseraj.almodeeh?_t=8ocPGrrxWwk&_r=1" },
 ];
 
 export default function Footer() {
@@ -90,7 +90,7 @@ export default function Footer() {
                 {company.map((item) => (
                   <li key={item}>
                     <Link
-                      to="/coming-soon"
+                      to={item === "Contact" ? "/contact" : "/coming-soon"}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
                       {item}

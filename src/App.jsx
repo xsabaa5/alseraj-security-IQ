@@ -9,6 +9,7 @@ import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import ComingSoon from "./pages/ComingSoon";
+import ContactUs from "./pages/ContactUs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,17 +37,23 @@ function App() {
 
   const location = useLocation();
   const isComingSoon = location.pathname === "/coming-soon";
+  const isContact = location.pathname === "/contact";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
-      {!isComingSoon && <Navbar />}
+      {!isComingSoon && !isContact && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
-      {!isComingSoon && <Footer />}
+      {!isComingSoon && !isContact && <Footer />}
     </div>
   );
 }
