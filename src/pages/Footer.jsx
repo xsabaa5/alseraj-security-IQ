@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import {
   FaLinkedinIn,
   FaYoutube,
@@ -88,12 +89,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {company.map((item) => (
                   <li key={item}>
-                    <a
-                      href="#"
+                    <Link
+                      to="/coming-soon"
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
                       {item}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

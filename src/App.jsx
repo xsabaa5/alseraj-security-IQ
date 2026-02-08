@@ -8,6 +8,7 @@ import Footer from "./pages/Footer";
 import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import ComingSoon from "./pages/ComingSoon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
       </Routes>
       <Footer />
     </div>

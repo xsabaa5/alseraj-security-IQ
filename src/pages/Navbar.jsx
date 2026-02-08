@@ -1,89 +1,130 @@
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 
-export default function Navbar(){
-    const [mobileMenuIsOpen , setMobileMenuIsOpen] = useState(false);
-    const [count, setCount] = useState(0)
-    return (
-    <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-black/20 backdrop:blur-sm">
-        <div className="px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
-                <div>
-                    <img src="/logo.png" alt="alseraj" className="w-32 h-auto cursor-pointer"/>
-                </div>
-                    <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Solution", href: "#Solution" },
+  { label: "Contact Us", href: "/contact" },
+];
 
-                        <Link to="/home" className="text-white/65 hover:text-white text-0.5pxduration-300">
-                            Home
-                        </Link>
-                        <Link to="/about" className="text-white/65 hover:text-white text-0.5px duration-300">
-                            About
-                        </Link>
-                        <Link to="/services" className="text-white/65 hover:text-white text-0.5px duration-300">
-                            Services
-                        </Link>
-                        <Link to="/solutions" className="text-white/65 hover:text-white text-0.5px duration-300">
-                            Solution
-                        </Link>
-                        <Link to="/contact" className="text-white/65 hover:text-white text-0.5px duration-300">
-                            Contact Us
-                        </Link>
-                    </div>
-                    <button className="md:hidden p-2 text-white/65 hover:text-white "
-                    onClick={() => setMobileMenuIsOpen(prev => !prev)}
-                    >
-                        {mobileMenuIsOpen ? (
-                          <X className="w-5 h-5 sm:w-6 sm:h-6"/>  
-                        ):(
-                          <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
-                        )}
-                    </button>
-                <div className="hidden md:block w-fit h-fit  bg-white/9 rounded-4xl border-white/10 hover:border-white/30 duration-300 border ">
-                        <button className="py-2.5 px-5 cursor-pointer ">
-                            <span>Online Store</span>
-                        </button>
-                </div>
-                </div>
-            </div>
-            {mobileMenuIsOpen && (
-                <div className="md:hidden w-screen h-screen  backdrop-blur-lg  animate-in slide-in-from-top duration-300  space-y-8 content-center">
-                    <div className="space-y-8 justify-items-center ">
+export default function NavBar() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-                        <Link to="/" className="block text-gray-300 hover:text-white text-xl font-extralight tracking-wide w-fit"
-                           onClick={() => setMobileMenuIsOpen(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link to="/about" className="block text-gray-300 hover:text-white text-xl font-extralight tracking-wide "
-                            onClick={() => setMobileMenuIsOpen(false)}
-                        >
-                            About
-                        </Link>
-                        <Link to="/services" className="block text-gray-300 hover:text-white text-xl font-extralight tracking-wide "
-                            onClick={() => setMobileMenuIsOpen(false)}
-                        >
-                            Services
-                        </Link>
-                        <Link to="/solutions" className="block text-gray-300 hover:text-white text-xl font-extralight tracking-wide "
-                            onClick={() => setMobileMenuIsOpen(false)}
-                        >
-                            Solution
-                        </Link>
-                        <Link to="/contact" className="block text-gray-300 hover:text-white text-xl font-extralight tracking-wide "
-                            onClick={() => setMobileMenuIsOpen(false)}
-                        >
-                            Contact Us
-                        </Link>
-                    </div>
-                         <div className="h-px w-10 bg-white/15  justify-self-center"/>
-                            <div className=" w-fit h-fit bg-white/9 rounded-4xl border-white/10 border  justify-self-center">
-                                <button className="py-2.5 px-5">
-                                <span>Online Store</span>
-                                </button>
-                            </div>
-                    </div>
-            )}
-        </nav>  
-    );
-    }
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <>
+      {/* Navbar */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-1000 flex items-center justify-between px-4 py-3 transition-all duration-300 sm:px-10 sm:py-4 ${
+          menuOpen
+            ? "border-b border-transparent bg-transparent"
+            : "border-b border-white/6 bg-[rgba(10,10,15,0.2)] backdrop-blur-[20px]"
+        }`}
+      >
+        {/* Logo */}
+        <Link to="/" className="relative z-1001 flex items-center gap-2">
+          <img
+            src="/logo.png"
+            alt="Al Seraj Company Logo"
+            className="h-auto w-30"
+          />
+        </Link>
+
+        {/* Desktop Nav Links - Centered */}
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex font-medium">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="rounded-md px-3.5 py-2 text-sm text-white/60 transition-all duration-300 hover:text-white"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Desktop CTA */}
+        <Link
+          to="/store"
+          className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4.5 py-2.5 text-[13px] text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 lg:flex"
+        >
+          Online Store
+        </Link>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="relative z-1001 block h-10 w-10 cursor-pointer border-none bg-transparent p-2 lg:hidden"
+          aria-label="Toggle menu"
+        >
+          <span
+            className="absolute left-1/2 block h-px w-4.25 bg-white transition-all duration-300"
+            style={{
+              top: menuOpen ? 19 : 14,
+              transform: `translateX(-50%) ${menuOpen ? "rotate(45deg)" : "rotate(0)"}`,
+            }}
+          />
+          <span
+            className="absolute left-1/2 block h-px w-4.25 bg-white transition-all duration-300"
+            style={{
+              top: menuOpen ? 19 : 20,
+              transform: `translateX(-50%) ${menuOpen ? "rotate(-45deg)" : "rotate(0)"}`,
+            }}
+          />
+        </button>
+      </nav>
+
+      {/* Full-Screen Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-999 flex flex-col items-center justify-center bg-black/97 backdrop-blur-2xl transition-all duration-400 ${
+          menuOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        {navLinks.map((link, i) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => setMenuOpen(false)}
+            className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 ${
+              menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+            }`}
+            style={{
+              transitionDelay: menuOpen ? `${0.1 + i * 0.05}s` : "0s",
+            }}
+          >
+            {link.label}
+          </a>
+        ))}
+
+        {/* Divider */}
+        <div
+          className={`mb-2 mt-6 h-px w-10 bg-white/15 transition-opacity duration-400 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: menuOpen ? "0.3s" : "0s" }}
+        />
+
+        {/* Mobile CTA */}
+        <Link
+          to="/store"
+          onClick={() => setMenuOpen(false)}
+          className={`mt-8 rounded-full border border-white/10 bg-white/6 px-7 py-3.5 text-[15px] text-white/90 transition-all duration-400 hover:bg-white/10 ${
+            menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+          }`}
+          style={{ transitionDelay: menuOpen ? "0.35s" : "0s" }}
+        >
+          Online Store
+        </Link>
+      </div>
+    </>
+  );
+}
