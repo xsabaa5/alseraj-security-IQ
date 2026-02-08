@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Solution", href: "#Solution" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Home", hash: "home" },
+  { label: "About", hash: "about" },
+  { label: "Services", hash: "services" },
+  { label: "Solution", hash: "solutions" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -18,6 +20,33 @@ export default function NavBar() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  // Handle hash scrolling when arriving from another page
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const id = location.hash.replace("#", "");
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "instant" });
+      }, 100);
+    }
+  }, [location]);
+
+  const handleNavClick = (link) => {
+    setMenuOpen(false);
+
+    if (link.to) {
+      navigate(link.to);
+      return;
+    }
+
+    if (location.pathname === "/") {
+      const el = document.getElementById(link.hash);
+      if (el) el.scrollIntoView({ behavior: "instant" });
+    } else {
+      navigate("/#" + link.hash);
+    }
+  };
 
   return (
     <>
@@ -41,13 +70,13 @@ export default function NavBar() {
         {/* Desktop Nav Links - Centered */}
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex font-medium">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="rounded-md px-3.5 py-2 text-sm text-white/60 transition-all duration-300 hover:text-white"
+            <li key={link.label}>
+              <button
+                onClick={() => handleNavClick(link)}
+                className="rounded-md px-3.5 py-2 text-sm text-white/60 transition-all duration-300 hover:text-white cursor-pointer bg-transparent border-none"
               >
                 {link.label}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -90,11 +119,10 @@ export default function NavBar() {
         }`}
       >
         {navLinks.map((link, i) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMenuOpen(false)}
-            className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 ${
+          <button
+            key={link.label}
+            onClick={() => handleNavClick(link)}
+            className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 cursor-pointer bg-transparent border-none ${
               menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
             }`}
             style={{
@@ -102,7 +130,7 @@ export default function NavBar() {
             }}
           >
             {link.label}
-          </a>
+          </button>
         ))}
 
         {/* Divider */}

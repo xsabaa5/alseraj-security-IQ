@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { GiDeliveryDrone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
 import { FaServer, FaRobot, FaShieldAlt, FaArrowRight } from "react-icons/fa";
@@ -6,34 +7,39 @@ const services = [
   {
     icon: GiDeliveryDrone,
     title: "Drone",
+    slug: "drone",
     description: "Advanced aerial surveillance and monitoring systems",
   },
   {
     icon: HiVideoCamera,
     title: "Cameras",
+    slug: "cameras",
     description: "Professional-grade camera systems with AI analytics",
   },
   {
     icon: FaServer,
     title: "Information Technology",
+    slug: "information-technology",
     description: "Comprehensive IT infrastructure and software solutions",
   },
   {
     icon: FaRobot,
     title: "Mobile Robotics",
+    slug: "mobile-robotics",
     description: "Autonomous mobile robots for security and inspection",
   },
   {
     icon: FaShieldAlt,
     title: "Cyber Security",
+    slug: "cyber-security",
     description: "Advanced security services protecting digital assets",
   },
 ];
 
-function ServiceCard({ icon: Icon, title, description }) {
+function ServiceCard({ icon: Icon, title, slug, description }) {
   return (
-    <div className="group relative bg-linear-to-br 
-      border border-red-500/20 rounded-2xl p-6 
+    <Link to={`/services/${slug}`} className="group relative bg-linear-to-br
+      border border-red-500/20 rounded-2xl p-6 block
       hover:border-red-500/40 transition-all duration-300 cursor-pointer ">
       <div className="flex items-center gap-4 h-full lg:min-h-35">
         <div className="w-14 h-14 flex items-center justify-center rounded-full
@@ -50,13 +56,13 @@ function ServiceCard({ icon: Icon, title, description }) {
           <FaArrowRight className="text-red-500 text-sm" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
 export default function Services() {
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
+    <div id="services" className="min-h-screen w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
       {/* Header */}
       <div className="flex items-center gap-3 mb-12">
        <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
@@ -74,6 +80,7 @@ Our Products        </h1>
             <ServiceCard
               icon={service.icon}
               title={service.title}
+              slug={service.slug}
               description={service.description}
             />
           </div>

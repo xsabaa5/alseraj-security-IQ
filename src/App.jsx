@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router";
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -10,16 +10,21 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import ComingSoon from "./pages/ComingSoon";
 import ContactUs from "./pages/ContactUs";
+import ServiceDetail from "./pages/ServiceDetail";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -38,22 +43,28 @@ function App() {
   const location = useLocation();
   const isComingSoon = location.pathname === "/coming-soon";
   const isContact = location.pathname === "/contact";
+  const isServiceDetail = location.pathname.startsWith("/services/");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
-      {!isComingSoon && !isContact && <Navbar />}
+      {!isComingSoon && !isContact && !isServiceDetail && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
-      {!isComingSoon && !isContact && <Footer />}
+      {!isComingSoon && !isContact && !isServiceDetail && <Footer />}
     </div>
   );
 }

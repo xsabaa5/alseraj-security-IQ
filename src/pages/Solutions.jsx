@@ -63,7 +63,7 @@ function SolutionCard({ icon: Icon, title, description }) {
 
 export default function Solutions() {
   return (
-    <section className="w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
+    <section id="solutions" className="w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
       {/* Header */}
       <div className="flex items-center gap-3 mb-12">
         <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
