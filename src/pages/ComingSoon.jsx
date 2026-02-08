@@ -5,14 +5,14 @@ export default function ComingSoon() {
   return (
     <section className="w-full h-screen flex items-center justify-center bg-black px-6 relative overflow-hidden">
       {/* Decorative background blobs */}
-      <div className="absolute top-[10%] left-[10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full bg-[#e93d59] opacity-15 blur-[100px] pointer-events-none animate-float" />
+      <div className="absolute top-[10%] left-[10%] w-62.5 h-62.5 md:w-100 md:h-100 rounded-full bg-[#e93d59] opacity-15 blur-[100px] pointer-events-none animate-float" />
       <div
-        className="absolute bottom-[10%] right-[10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full bg-[#6c99fa] opacity-15 blur-[100px] pointer-events-none animate-float"
+        className="absolute bottom-[10%] right-[10%] w-62.5 h-62.5 md:w-100 md:h-100 rounded-full bg-[#6c99fa] opacity-15 blur-[100px] pointer-events-none animate-float"
         style={{ "--delay": "2s" }}
       />
 
       {/* Content */}
-      <div className="text-center max-w-[800px] w-[90%] relative z-10">
+      <div className="text-center max-w-200 w-[90%] relative z-10">
         {/* Logo */}
         <h2
           className="text-[clamp(2rem,5vw,3.5rem)] font-extralight tracking-[8px] md:mb-15 mb-10
@@ -26,7 +26,7 @@ export default function ComingSoon() {
         {/* Coming Soon Title */}
         <h1
           className="text-[clamp(3rem,10vw,7rem)] font-thin tracking-[clamp(2px,1vw,8px)] mb-8
-            bg-[length:200%_200%] bg-linear-to-br from-white via-[#e93d59] to-white bg-clip-text text-transparent
+            bg-size-[200%_200%] bg-linear-to-br from-white via-[#e93d59] to-white bg-clip-text text-transparent
             animate-fade-in-up-gradient"
           style={{ "--delay": "0.5s" }}
         >

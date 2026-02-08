@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -34,16 +34,19 @@ function App() {
     };
   }, []);
 
+  const location = useLocation();
+  const isComingSoon = location.pathname === "/coming-soon";
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
-      <Navbar />
+      {!isComingSoon && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
       </Routes>
-      <Footer />
+      {!isComingSoon && <Footer />}
     </div>
   );
 }
