@@ -141,7 +141,7 @@ export default function Footer() {
         <div className="h-px w-full bg-white/10 mb-6 footer-animate" />
 
         {/* Bottom */}
-        <p className="text-gray-600 text-xs footer-animate">
+        <p className="text-gray-300 text-s footer-animate">
           &copy; {new Date().getFullYear()} AL SERAJ Company. All rights reserved.
         </p>
       </div>
