@@ -25,7 +25,15 @@ export default function Hero() {
           bendStrength={0.5}
           interactive={true}
           parallax={true}
-          mixBlendMode="normal"
+          mixBlendMode="screen"
+          linesGradient={[
+            "#1a2a6c",
+            "#6b2fa0",
+            "#e947f5",
+            "#e94560",
+            "#ff6b35",
+            "#fdbb2d",
+          ]}
         />
       </div>
     </div>
