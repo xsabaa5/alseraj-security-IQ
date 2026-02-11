@@ -6,6 +6,7 @@ import { HiVideoCamera } from "react-icons/hi2";
 import gsap from "gsap";
 import "@google/model-viewer";
 import droneModel from "../assets/drone.glb";
+import itVideo from "../assets/images/IT.mp4";
 import {
   FaServer,
   FaRobot,
@@ -276,6 +277,7 @@ export default function ServiceDetail() {
   const droneContainerRef = useRef(null);
   const droneModelRef = useRef(null);
   const isDrone = slug === "drone";
+  const isIT = slug === "information-technology";
 
   useEffect(() => {
     if (!isDrone) return;
@@ -381,7 +383,20 @@ export default function ServiceDetail() {
           </div>
         )}
 
-        {!isDrone && (
+        {/* IT Video Background */}
+        {isIT && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-60% h-full object-cover opacity-90"
+          >
+            <source src={itVideo} type="video/mp4" />
+          </video>
+        )}
+
+        {!isDrone && !isIT && (
           <div
             className="w-28 h-28 rounded-full bg-[#e93d59]/15 border border-[#e93d59]/30
             flex items-center justify-center mb-10"
@@ -391,7 +406,7 @@ export default function ServiceDetail() {
         )}
         <h1
           className="text-[clamp(3rem,10vw,7rem)] font-bold
-            bg-linear-to-r from-[white] to-[white-100]/90 bg-clip-text text-transparent mb-6 text-center px-6"
+            text-white mb-6 text-center px-6 z-10 relative"
           style={
             isDrone
               ? {
@@ -406,7 +421,7 @@ export default function ServiceDetail() {
           {isDrone ? "Drone" : title}
         </h1>
         {!isDrone && (
-          <p className="text-gray-400 text-[clamp(1rem,2.5vw,1.35rem)] max-w-2xl mx-auto text-center px-6">
+          <p className="text-white text-[clamp(1rem,2.5vw,1.35rem)] max-w-2xl mx-auto text-center px-6 z-10 relative">
             {tagline}
           </p>
         )}
