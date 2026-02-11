@@ -1,7 +1,4 @@
-@font-face {
-    font-family: Montserrat;
-    src: url("./assets/Fonts/Montserrat-Light.ttf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 

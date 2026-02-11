@@ -392,7 +392,7 @@ export default function ServiceDetail() {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-60% h-full object-cover opacity-90"
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
           >
             <source src={itVideo} type="video/mp4" />
           </video>
@@ -400,15 +400,24 @@ export default function ServiceDetail() {
 
         {/* Cyber Security Video Background */}
         {isCyber && (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
-          >
-            <source src={cyberVideo} type="video/mp4" />
-          </video>
+          <>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
+            >
+              <source src={cyberVideo} type="video/mp4" />
+            </video>
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, transparent -15%,black 75%)",
+              }}
+            />
+          </>
         )}
 
         {!isDrone && !isIT && !isCyber && (
@@ -420,7 +429,7 @@ export default function ServiceDetail() {
           </div>
         )}
         <h1
-          className="text-[clamp(3rem,10vw,7rem)] font-bold
+          className="text-[clamp(3rem,10vw,7rem)] font-semibold
             text-white mb-6 text-center px-6 z-10 relative"
           style={
             isDrone
