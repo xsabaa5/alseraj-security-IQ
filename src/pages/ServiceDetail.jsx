@@ -7,6 +7,7 @@ import gsap from "gsap";
 import "@google/model-viewer";
 import droneModel from "../assets/drone.glb";
 import itVideo from "../assets/images/IT.mp4";
+import cyberVideo from "../assets/images/cyber-security.mp4";
 import {
   FaServer,
   FaRobot,
@@ -278,6 +279,7 @@ export default function ServiceDetail() {
   const droneModelRef = useRef(null);
   const isDrone = slug === "drone";
   const isIT = slug === "information-technology";
+  const isCyber = slug === "cyber-security";
 
   useEffect(() => {
     if (!isDrone) return;
@@ -396,7 +398,20 @@ export default function ServiceDetail() {
           </video>
         )}
 
-        {!isDrone && !isIT && (
+        {/* Cyber Security Video Background */}
+        {isCyber && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
+          >
+            <source src={cyberVideo} type="video/mp4" />
+          </video>
+        )}
+
+        {!isDrone && !isIT && !isCyber && (
           <div
             className="w-28 h-28 rounded-full bg-[#e93d59]/15 border border-[#e93d59]/30
             flex items-center justify-center mb-10"
