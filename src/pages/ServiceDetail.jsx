@@ -5,7 +5,8 @@ import { GiDeliveryDrone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi2";
 import gsap from "gsap";
 import "@google/model-viewer";
-import droneModel from "../assets/drone.glb";
+import droneModel from "../assets/3D Assets/drone.glb";
+import cameraModel from "../assets/3D Assets/camera.glb";
 import itVideo from "../assets/images/IT.mp4";
 import cyberVideo from "../assets/images/cyber-security.mp4";
 import {
@@ -277,7 +278,9 @@ export default function ServiceDetail() {
   const service = servicesData[slug];
   const droneContainerRef = useRef(null);
   const droneModelRef = useRef(null);
+  const cameraModelRef = useRef(null);
   const isDrone = slug === "drone";
+  const isCamera = slug === "cameras";
   const isIT = slug === "information-technology";
   const isCyber = slug === "cyber-security";
 
@@ -338,6 +341,17 @@ export default function ServiceDetail() {
     };
   }, [isDrone]);
 
+  useEffect(() => {
+    if (!isCamera) return;
+    const el = cameraModelRef.current;
+    if (!el) return;
+    el.setAttribute("exposure", "0.5");
+    el.setAttribute("shadow-intensity", "0");
+    el.setAttribute("environment-image", "neutral");
+    el.setAttribute("skybox-image", "");
+    el.style.setProperty("--poster-color", "transparent");
+  }, [isCamera]);
+
   if (!service) return <Navigate to="/" replace />;
 
   const { icon: MainIcon, title, tagline, overview, features, specs } = service;
@@ -345,7 +359,7 @@ export default function ServiceDetail() {
   return (
     <section className="w-full min-h-screen bg-black text-white font-Montserrat">
       {/* Full-Screen Hero */}
-      <div className="relative h-screen w-screen flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         {/* Back to Home */}
         <Link
           to="/"
@@ -385,6 +399,30 @@ export default function ServiceDetail() {
           </div>
         )}
 
+        {/* Camera 3D Model — only on cameras page */}
+        {isCamera && (
+          <div className="absolute w-full h-screen pointer-events-none z-20">
+            <model-viewer
+              ref={cameraModelRef}
+              src={cameraModel}
+              autoplay
+              camera-controls
+              camera-orbit="50deg 80deg 105%"
+              interaction-prompt="none"
+              style={{
+                position: "absolute",
+                top: "15%",
+                left: "-30px",
+                width: "35vw",
+                height: "60vh",
+                zIndex: 999,
+                pointerEvents: "none",
+                background: "transparent",
+              }}
+            />
+          </div>
+        )}
+
         {/* IT Video Background */}
         {isIT && (
           <video
@@ -392,7 +430,7 @@ export default function ServiceDetail() {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
+            className="absolute inset-0 top-1/2 left-[45%] scale-[2] md:scale-100 -translate-1/2  md:translate-none md:left-auto md:top-auto md:w-full md:h-full object-cover opacity-90"
           >
             <source src={itVideo} type="video/mp4" />
           </video>
@@ -420,7 +458,7 @@ export default function ServiceDetail() {
           </>
         )}
 
-        {!isDrone && !isIT && !isCyber && (
+        {!isDrone && !isCamera && !isIT && !isCyber && (
           <div
             className="w-28 h-28 rounded-full bg-[#e93d59]/15 border border-[#e93d59]/30
             flex items-center justify-center mb-10"
@@ -432,7 +470,7 @@ export default function ServiceDetail() {
           className="text-[clamp(3rem,10vw,7rem)] font-semibold
             text-white mb-6 text-center px-6 z-10 relative"
           style={
-            isDrone
+            isDrone || isCamera
               ? {
                   fontSize: "clamp(5rem, 15vw, 20rem)",
                   fontWeight: 700,
@@ -442,9 +480,9 @@ export default function ServiceDetail() {
               : {}
           }
         >
-          {isDrone ? "Drone" : title}
+          {isDrone ? "Drone" : isCamera ? "Camera" : title}
         </h1>
-        {!isDrone && (
+        {!isDrone && !isCamera && (
           <p className="text-white text-[clamp(1rem,2.5vw,1.35rem)] max-w-2xl mx-auto text-center px-6 z-10 relative">
             {tagline}
           </p>
