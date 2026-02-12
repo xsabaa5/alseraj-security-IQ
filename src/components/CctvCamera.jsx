@@ -7,7 +7,7 @@ import cameraModel from "../assets/3D Assets/cctv_cameras.glb";
 // Preload model for faster initial render
 useGLTF.preload(cameraModel);
 
-function CctvModel({ onReady }) {
+function CctvModel({ onReady, rotation = [0, 0, 0] }) {
   const { scene } = useGLTF(cameraModel);
   // Clone the scene so HMR/re-renders don't detach the original
   const clonedScene = useMemo(() => scene.clone(true), [scene]);
@@ -60,7 +60,9 @@ function CctvModel({ onReady }) {
 
   return (
     <Center>
-      <primitive object={clonedScene} />
+      <group rotation={rotation}>
+        <primitive object={clonedScene} />
+      </group>
     </Center>
   );
 }
@@ -91,7 +93,7 @@ function Loader() {
   );
 }
 
-export default function CctvCamera({ style }) {
+export default function CctvCamera({ style, rotation }) {
   const [loading, setLoading] = useState(true);
 
   return (
@@ -108,7 +110,7 @@ export default function CctvCamera({ style }) {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <directionalLight position={[-3, 2, -2]} intensity={0.4} />
         <Suspense fallback={null}>
-          <CctvModel onReady={() => setLoading(false)} />
+          <CctvModel onReady={() => setLoading(false)} rotation={rotation} />
         </Suspense>
       </Canvas>
     </div>

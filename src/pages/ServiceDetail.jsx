@@ -44,7 +44,7 @@ import {
   FaLock,
   FaUsers,
 } from "react-icons/fa";
-import { rotate } from "three/src/nodes/TSL.js";
+import { Scale } from "lucide-react";
 
 const servicesIcons = {
   drone: {
@@ -219,7 +219,7 @@ export default function ServiceDetail() {
               src={droneModel}
               autoplay
               camera-controls
-              camera-orbit="0deg 10deg 105%"
+              camera-orbit="0deg 90deg 105%"
               interaction-prompt="none"
               style={{
                 position: "absolute",
@@ -239,13 +239,15 @@ export default function ServiceDetail() {
         {/* Camera 3D Model — only on cameras page */}
         {isCamera && (
           <CctvCamera
+            rotation={[-0.2, 0, 0]}
             style={{
               position: "absolute",
-              top: "20%",
-              left: "70px",
+              top: "18%",
+              left: "5vw",
               width: "15vw",
               height: "60vh",
               zIndex: 999,
+              Scale: 2,
               pointerEvents: "none",
             }}
           />
