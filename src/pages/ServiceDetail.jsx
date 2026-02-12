@@ -7,7 +7,7 @@ import gsap from "gsap";
 import "@google/model-viewer";
 import { useTranslation } from "react-i18next";
 import droneModel from "../assets/3D Assets/drone.glb";
-import cameraModel from "../assets/3D Assets/cctv_cameras.glb";
+import CctvCamera from "../components/CctvCamera";
 import itVideo from "../assets/images/IT.mp4";
 import cyberVideo from "../assets/images/cyber-security.mp4";
 import {
@@ -44,6 +44,7 @@ import {
   FaLock,
   FaUsers,
 } from "react-icons/fa";
+import { rotate } from "three/src/nodes/TSL.js";
 
 const servicesIcons = {
   drone: {
@@ -109,7 +110,6 @@ export default function ServiceDetail() {
   const { t } = useTranslation();
   const droneContainerRef = useRef(null);
   const droneModelRef = useRef(null);
-  const cameraModelRef = useRef(null);
   const isDrone = slug === "drone";
   const isCamera = slug === "cameras";
   const isIT = slug === "information-technology";
@@ -172,17 +172,6 @@ export default function ServiceDetail() {
     };
   }, [isDrone]);
 
-  useEffect(() => {
-    if (!isCamera) return;
-    const el = cameraModelRef.current;
-    if (!el) return;
-    el.setAttribute("exposure", "0.5");
-    el.setAttribute("shadow-intensity", "0");
-    el.setAttribute("environment-image", "neutral");
-    el.setAttribute("skybox-image", "");
-    el.style.setProperty("--poster-color", "transparent");
-  }, [isCamera]);
-
   if (!validSlugs.includes(slug)) return <Navigate to="/" replace />;
 
   const serviceIcons = servicesIcons[slug];
@@ -230,7 +219,7 @@ export default function ServiceDetail() {
               src={droneModel}
               autoplay
               camera-controls
-              camera-orbit="0deg 90deg 105%"
+              camera-orbit="0deg 10deg 105%"
               interaction-prompt="none"
               style={{
                 position: "absolute",
@@ -249,26 +238,17 @@ export default function ServiceDetail() {
 
         {/* Camera 3D Model — only on cameras page */}
         {isCamera && (
-          <div className="absolute w-full h-screen pointer-events-none z-20">
-            <model-viewer
-              ref={cameraModelRef}
-              src={cameraModel}
-              autoplay
-              camera-controls
-              camera-orbit="50deg 80deg 105%"
-              interaction-prompt="none"
-              style={{
-                position: "absolute",
-                top: "15%",
-                left: "70px",
-                width: "15vw",
-                height: "60vh",
-                zIndex: 999,
-                pointerEvents: "none",
-                background: "transparent",
-              }}
-            />
-          </div>
+          <CctvCamera
+            style={{
+              position: "absolute",
+              top: "20%",
+              left: "70px",
+              width: "15vw",
+              height: "60vh",
+              zIndex: 999,
+              pointerEvents: "none",
+            }}
+          />
         )}
 
         {/* IT Video Background */}
