@@ -1,15 +1,27 @@
 import { useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const textRef = useRef(null);
-  const text =
-    "Integrated technology and security solutions powering digital transformation since 1996.";
+  const { t, i18n } = useTranslation();
+  const text = t("about.text");
+  const isArabic = i18n.language === "ar";
 
   const splitText = useMemo(() => {
+    if (isArabic) {
+      // Arabic: split by words only (characters must stay connected for ligatures)
+      return text.split(" ").map((word, wordIndex, arr) => (
+        <span key={wordIndex}>
+          <span className="char inline-block">{word}</span>
+          {wordIndex < arr.length - 1 && <span className="char inline">&nbsp;</span>}
+        </span>
+      ));
+    }
+    // English: split by characters for letter-by-letter animation
     return text.split(" ").map((word, wordIndex, arr) => (
       <span key={wordIndex} className="inline-block whitespace-nowrap">
         {word.split("").map((char, charIndex) => (
@@ -20,7 +32,7 @@ function About() {
         {wordIndex < arr.length - 1 && <span className="char inline">&nbsp;</span>}
       </span>
     ));
-  }, []);
+  }, [text, isArabic]);
 
   useEffect(() => {
     const el = textRef.current;
@@ -58,7 +70,7 @@ function About() {
       <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
         <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-[#e93d59] rounded-full"></div>
         <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-          who we are
+          {t("about.badge")}
         </h1>
       </div>
 

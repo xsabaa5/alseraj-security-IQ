@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "solution": "Solution",
+    "contactUs": "Contact Us",
+    "onlineStore": "Online Store"
+  },
+  "hero": {
+    "technology": "Technology",
+    "security": "Security",
+    "reliability": "Reliability",
+    "subtitle": "Delivering Technology and Security with Reliable Performance"
+  },
+  "about": {
+    "badge": "who we are",
+    "text": "Integrated technology and security solutions powering digital transformation since 1996."
+  },
+  "services": {
+    "badge": "Our Products",
+    "drone": {
+      "title": "Drone",
+      "description": "Advanced aerial surveillance and monitoring systems"
+    },
+    "cameras": {
+      "title": "Cameras",
+      "description": "Professional-grade camera systems with AI analytics"
+    },
+    "it": {
+      "title": "Information Technology",
+      "description": "Comprehensive IT infrastructure and software solutions"
+    },
+    "robotics": {
+      "title": "Mobile Robotics",
+      "description": "Autonomous mobile robots for security and inspection"
+    },
+    "cyber": {
+      "title": "Cyber Security",
+      "description": "Advanced security services protecting digital assets"
+    }
+  },
+  "solutions": {
+    "badge": "Our Solution",
+    "security": {
+      "title": "Security Solutions",
+      "description": "Advanced security systems and monitoring solutions designed to protect your assets and ensure complete safety."
+    },
+    "cyber": {
+      "title": "Cyber Security",
+      "description": "The practice of protecting systems, networks, programs, and data from digital attacks, theft, or damage."
+    },
+    "software": {
+      "title": "Software Development",
+      "description": "Custom software solutions tailored to your business needs, built with cutting-edge technologies."
+    },
+    "network": {
+      "title": "Network Infrastructure",
+      "description": "Robust network design and implementation to ensure reliable connectivity, scalability, and performance."
+    },
+    "intelligent": {
+      "title": "Intelligent Solutions",
+      "description": "Advanced technologies that collect and analyze data to support informed decision-making."
+    },
+    "support": {
+      "title": "Technical Support",
+      "description": "24/7 dedicated technical support and maintenance services for uninterrupted operations."
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "q1": "What services does AL-SERAJ provide?",
+    "a1": "We provide comprehensive technology and security solutions including cybersecurity, drones, cameras, mobile-robotics and intelligent automation.",
+    "q2": "How long have we been in business?",
+    "a2": "We have been powering digital transformation with integrated technology and security solutions since 1996, bringing over 25 years of expertise to every project.",
+    "q3": "What makes your solutions unique?",
+    "a3": "Our solutions combine cutting-edge technology with proven security frameworks, offering modern UI/UX design, high-performance applications, and comprehensive digital marketing strategies.",
+    "q4": "Do you offer custom solutions?",
+    "a4": "Yes, we specialize in creating tailored solutions for each client's specific requirements, from custom software development to specialized security implementations.",
+    "q5": "What industries do you serve?",
+    "a5": "We serve a wide range of industries including government, bank, financial sector and education.",
+    "q6": "How can I get started with your services?",
+    "a6": "Getting started is easy. Contact us through our website or give us a call to schedule a consultation where we'll discuss your needs and propose the best solutions for your organization."
+  },
+  "footer": {
+    "tagline": "Powering digital transformation since 1996",
+    "shopAndLearn": "Shop and Learn",
+    "company": "Company",
+    "drone": "Drone",
+    "camera": "Camera",
+    "it": "IT",
+    "robotics": "Mobile-Robotics",
+    "cyber": "Cyber Security",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "careers": "Careers",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "AL SERAJ Company. All rights reserved."
+  },
+  "contact": {
+    "backToHome": "Back to Home",
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Get in touch with us for any inquiries or support.",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "locationLine1": "Iraq / Baghdad / Sinaa St.",
+    "locationLine2": "In front of Al Rafidain Bank",
+    "viewOnMap": "View on Google Maps",
+    "sendMessage": "Send us a Message",
+    "sendSubtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "phoneNumber": "Phone Number",
+    "subject": "Subject",
+    "yourMessage": "Your Message",
+    "send": "Send Message",
+    "connectWithUs": "Connect with us"
+  },
+  "comingSoon": {
+    "title": "COMING SOON",
+    "subtitle": "Something Amazing Is On The Way",
+    "backToHome": "Back to Home"
+  },
+  "serviceDetail": {
+    "backToHome": "Back to Home",
+    "aboutService": "About This Service",
+    "keyFeatures": "Key Features",
+    "techSpecs": "Technical Specifications",
+    "interested": "Interested in our {{title}}?",
+    "ctaText": "Get in touch with our team to discuss how we can help your organization.",
+    "contactUs": "Contact Us",
+    "droneTitle": "Drone",
+    "cameraTitle": "Camera",
+    "drone": {
+      "title": "Drone Solutions",
+      "tagline": "Advanced aerial technology for modern challenges",
+      "overview": "Advanced aerial surveillance and monitoring systems equipped with cutting-edge technology for security, reconnaissance, and data collection operations. Our drone solutions provide comprehensive aerial coverage for various industries including security, agriculture, construction, infrastructure inspection and oil sector.",
+      "feature1Title": "4K Ultra HD Camera",
+      "feature1Desc": "Crystal clear video capture with professional-grade imaging",
+      "feature2Title": "Real-time Streaming",
+      "feature2Desc": "Live video transmission with minimal latency",
+      "feature3Title": "GPS Navigation",
+      "feature3Desc": "Precise waypoint planning and autonomous flight paths",
+      "feature4Title": "Obstacle Avoidance",
+      "feature4Desc": "Advanced sensors for safe autonomous operation",
+      "feature5Title": "Long Flight Duration",
+      "feature5Desc": "45 to 80 minutes of continuous flight time",
+      "feature6Title": "Thermal Imaging",
+      "feature6Desc": "Infrared capability for night operations",
+      "spec1Label": "FLIGHT TIME",
+      "spec1Value": "45-80 min",
+      "spec2Label": "RANGE",
+      "spec2Value": "15 km",
+      "spec3Label": "CAMERA",
+      "spec3Value": "4K Ultra HD",
+      "spec4Label": "PAYLOAD",
+      "spec4Value": "Up to 5 kg"
+    },
+    "cameras": {
+      "title": "Camera Systems",
+      "tagline": "Professional-grade surveillance with AI-powered analytics",
+      "overview": "Professional-grade surveillance camera systems with advanced AI-powered analytics, facial recognition, and 24/7 monitoring capabilities for comprehensive security coverage. Our camera solutions integrate seamlessly with any infrastructure while providing cutting-edge technology for maximum protection.",
+      "feature1Title": "AI Object Detection",
+      "feature1Desc": "Intelligent recognition of people, vehicles, and objects",
+      "feature2Title": "Facial Recognition",
+      "feature2Desc": "Advanced biometric identification technology",
+      "feature3Title": "Night Vision",
+      "feature3Desc": "Infrared technology for 24/7 monitoring",
+      "feature4Title": "360° Pan-Tilt-Zoom",
+      "feature4Desc": "Complete coverage with motorized movement",
+      "feature5Title": "Cloud Storage",
+      "feature5Desc": "Secure cloud integration for footage backup",
+      "feature6Title": "Motion Alerts",
+      "feature6Desc": "Instant notifications for detected activity",
+      "spec1Label": "RESOLUTION",
+      "spec1Value": "4K Ultra HD",
+      "spec2Label": "STORAGE",
+      "spec2Value": "Cloud + Local",
+      "spec3Label": "FIELD OF VIEW",
+      "spec3Value": "360°",
+      "spec4Label": "NIGHT VISION",
+      "spec4Value": "Up to 50m"
+    },
+    "information-technology": {
+      "title": "Information Technology",
+      "tagline": "Comprehensive IT infrastructure and software solutions",
+      "overview": "Comprehensive IT infrastructure and software solutions including network security, cloud computing, system integration, and enterprise application development for modern businesses. We help organizations leverage technology to improve efficiency, security, and competitive advantage in today's digital landscape.",
+      "feature1Title": "Cloud Infrastructure",
+      "feature1Desc": "Scalable cloud solutions for modern businesses",
+      "feature2Title": "Software Development",
+      "feature2Desc": "Custom enterprise application development",
+      "feature3Title": "Network Architecture",
+      "feature3Desc": "Robust and secure network design",
+      "feature4Title": "Database Management",
+      "feature4Desc": "Efficient data storage and retrieval systems",
+      "feature5Title": "System Integration",
+      "feature5Desc": "Seamless connectivity between platforms",
+      "feature6Title": "24/7 Support",
+      "feature6Desc": "Round-the-clock technical assistance",
+      "spec1Label": "DEPLOYMENT",
+      "spec1Value": "Cloud/On-Premise",
+      "spec2Label": "SCALABILITY",
+      "spec2Value": "Enterprise-Grade",
+      "spec3Label": "SUPPORT",
+      "spec3Value": "24/7",
+      "spec4Label": "UPTIME",
+      "spec4Value": "99.9%"
+    },
+    "mobile-robotics": {
+      "title": "Mobile Robotics",
+      "tagline": "Autonomous robots for security, inspection, and beyond",
+      "overview": "Autonomous mobile robots designed for security patrols, inspection tasks, and hazardous environment operations with advanced navigation and sensing capabilities. Our robotic solutions provide reliable, tireless monitoring and can operate in environments too dangerous or inaccessible for humans.",
+      "feature1Title": "Autonomous Navigation",
+      "feature1Desc": "Self-guided movement with intelligent path planning",
+      "feature2Title": "360° Sensing",
+      "feature2Desc": "Complete environmental awareness with multiple sensors",
+      "feature3Title": "Obstacle Avoidance AI",
+      "feature3Desc": "Intelligent detection and navigation around obstacles",
+      "feature4Title": "Remote Control",
+      "feature4Desc": "Manual override capability when needed",
+      "feature5Title": "Multi-Terrain",
+      "feature5Desc": "Operation across various surface conditions",
+      "feature6Title": "Real-time Data",
+      "feature6Desc": "Continuous transmission of sensor information",
+      "spec1Label": "BATTERY LIFE",
+      "spec1Value": "8-12 hrs",
+      "spec2Label": "NAVIGATION",
+      "spec2Value": "LiDAR + GPS",
+      "spec3Label": "TERRAIN",
+      "spec3Value": "Multi-Surface",
+      "spec4Label": "CONTROL",
+      "spec4Value": "Auto + Manual"
+    },
+    "cyber-security": {
+      "title": "Cyber Security",
+      "tagline": "Protecting your digital assets from evolving threats",
+      "overview": "Advanced cybersecurity services protecting your digital assets with threat detection, vulnerability assessment, penetration testing, and comprehensive security audits. Our team of security experts provides multi-layered protection strategies to safeguard your organization against evolving cyber threats.",
+      "feature1Title": "Threat Detection",
+      "feature1Desc": "Real-time monitoring and threat identification",
+      "feature2Title": "Penetration Testing",
+      "feature2Desc": "Comprehensive security vulnerability assessment",
+      "feature3Title": "Security Audits",
+      "feature3Desc": "Thorough compliance and security reviews",
+      "feature4Title": "Firewall Protection",
+      "feature4Desc": "Advanced intrusion detection and prevention",
+      "feature5Title": "Data Encryption",
+      "feature5Desc": "End-to-end encryption for sensitive data",
+      "feature6Title": "Incident Response",
+      "feature6Desc": "Rapid response team for security breaches",
+      "spec1Label": "PROTECTION",
+      "spec1Value": "Multi-layered",
+      "spec2Label": "RESPONSE TIME",
+      "spec2Value": "15 min",
+      "spec3Label": "COMPLIANCE",
+      "spec3Value": "ISO 27001",
+      "spec4Label": "COVERAGE",
+      "spec4Value": "24/7"
+    }
+  }
+}

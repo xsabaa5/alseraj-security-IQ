@@ -1,37 +1,7 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-const faqs = [
-  {
-    question: "What services does AL-SERAJ provide?",
-    answer:
-      "We provide comprehensive technology and security solutions including cybersecurity, drones, cameras, mobile-robotics and intelligent automation.",
-  },
-  {
-    question: "How long have we been in business?",
-    answer:
-      "We have been powering digital transformation with integrated technology and security solutions since 1996, bringing over 25 years of expertise to every project.",
-  },
-  {
-    question: "What makes your solutions unique?",
-    answer:
-      "Our solutions combine cutting-edge technology with proven security frameworks, offering modern UI/UX design, high-performance applications, and comprehensive digital marketing strategies.",
-  },
-  {
-    question: "Do you offer custom solutions?",
-    answer:
-      "Yes, we specialize in creating tailored solutions for each client's specific requirements, from custom software development to specialized security implementations.",
-  },
-  {
-    question: "What industries do you serve?",
-    answer:
-      "We serve a wide range of industries including government, bank, financial sector and education.",
-  },
-  {
-    question: "How can I get started with your services?",
-    answer:
-      "Getting started is easy. Contact us through our website or give us a call to schedule a consultation where we'll discuss your needs and propose the best solutions for your organization.",
-  },
-];
+const faqKeys = ["1", "2", "3", "4", "5", "6"];
 
 function FAQItem({ question, answer, isOpen, onClick }) {
   return (
@@ -90,6 +60,7 @@ function FAQItem({ question, answer, isOpen, onClick }) {
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
+  const { t } = useTranslation();
 
   return (
     <section className="w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
@@ -98,23 +69,23 @@ export default function FAQ() {
         <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
           <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-[#e93d59] rounded-full"></div>
           <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-            FAQ
+            {t("faq.badge")}
           </h1>
         </div>
       </div>
 
       {/* Title */}
       <h2 className="text-white text-[clamp(1.5rem,4vw,2.5rem)] font-thin mb-12 text-center">
-        Frequently Asked Questions
+        {t("faq.title")}
       </h2>
 
       {/* FAQ List */}
       <div className="w-full max-w-3xl flex flex-col gap-4">
-        {faqs.map((faq, index) => (
+        {faqKeys.map((key, index) => (
           <FAQItem
-            key={index}
-            question={faq.question}
-            answer={faq.answer}
+            key={key}
+            question={t(`faq.q${key}`)}
+            answer={t(`faq.a${key}`)}
             isOpen={openIndex === index}
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
           />

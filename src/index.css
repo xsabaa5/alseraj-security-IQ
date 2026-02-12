@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap");
+@font-face {
+  font-family: "Cabin";
+  src: url("./assets/Fonts/Cabin-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
@@ -10,6 +16,11 @@ html.lenis body {
 html,
 body {
   font-family: Montserrat, sans-serif;
+}
+
+[dir="rtl"],
+[dir="rtl"] body {
+  font-family: "Cabin", Montserrat, sans-serif;
 }
 
 *,

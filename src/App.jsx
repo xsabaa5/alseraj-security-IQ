@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,7 +16,14 @@ import ServiceDetail from "./pages/ServiceDetail";
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const { i18n } = useTranslation();
   const lenisRef = useRef(null);
+
+  useEffect(() => {
+    const dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   useEffect(() => {
     const lenis = new Lenis({

@@ -2,38 +2,14 @@ import { Link } from "react-router";
 import { GiDeliveryDrone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
 import { FaServer, FaRobot, FaShieldAlt, FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const services = [
-  {
-    icon: GiDeliveryDrone,
-    title: "Drone",
-    slug: "drone",
-    description: "Advanced aerial surveillance and monitoring systems",
-  },
-  {
-    icon: HiVideoCamera,
-    title: "Cameras",
-    slug: "cameras",
-    description: "Professional-grade camera systems with AI analytics",
-  },
-  {
-    icon: FaServer,
-    title: "Information Technology",
-    slug: "information-technology",
-    description: "Comprehensive IT infrastructure and software solutions",
-  },
-  {
-    icon: FaRobot,
-    title: "Mobile Robotics",
-    slug: "mobile-robotics",
-    description: "Autonomous mobile robots for security and inspection",
-  },
-  {
-    icon: FaShieldAlt,
-    title: "Cyber Security",
-    slug: "cyber-security",
-    description: "Advanced security services protecting digital assets",
-  },
+  { icon: GiDeliveryDrone, key: "services.drone", slug: "drone" },
+  { icon: HiVideoCamera, key: "services.cameras", slug: "cameras" },
+  { icon: FaServer, key: "services.it", slug: "information-technology" },
+  { icon: FaRobot, key: "services.robotics", slug: "mobile-robotics" },
+  { icon: FaShieldAlt, key: "services.cyber", slug: "cyber-security" },
 ];
 
 function ServiceCard({ icon: Icon, title, slug, description }) {
@@ -61,6 +37,8 @@ function ServiceCard({ icon: Icon, title, slug, description }) {
 }
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <div id="services" className="min-h-screen w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
       {/* Header */}
@@ -68,8 +46,8 @@ export default function Services() {
        <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
         <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-[#e93d59] rounded-full"></div>
         <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-
-Our Products        </h1>
+          {t("services.badge")}
+        </h1>
       </div>
       </div>
 
@@ -79,9 +57,9 @@ Our Products        </h1>
           <div key={index} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
             <ServiceCard
               icon={service.icon}
-              title={service.title}
+              title={t(`${service.key}.title`)}
               slug={service.slug}
-              description={service.description}
+              description={t(`${service.key}.description`)}
             />
           </div>
         ))}

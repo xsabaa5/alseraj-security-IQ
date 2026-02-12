@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 
 import {
   FaLinkedinIn,
@@ -10,20 +11,20 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 
-const shopAndLearn = [
-  { label: "Drone", to: "/services/drone" },
-  { label: "Camera", to: "/services/cameras" },
-  { label: "IT", to: "/services/information-technology" },
-  { label: "Mobile-Robotics", to: "/services/mobile-robotics" },
-  { label: "Cyber Security", to: "/services/cyber-security" },
+const shopAndLearnLinks = [
+  { key: "footer.drone", to: "/services/drone" },
+  { key: "footer.camera", to: "/services/cameras" },
+  { key: "footer.it", to: "/services/information-technology" },
+  { key: "footer.robotics", to: "/services/mobile-robotics" },
+  { key: "footer.cyber", to: "/services/cyber-security" },
 ];
 
-const company = [
-  "About Us",
-  "Contact",
-  "Careers",
-  "Privacy Policy",
-  "Terms of Service",
+const companyLinks = [
+  { key: "footer.aboutUs", to: "/coming-soon" },
+  { key: "footer.contact", to: "/contact" },
+  { key: "footer.careers", to: "/coming-soon" },
+  { key: "footer.privacy", to: "/coming-soon" },
+  { key: "footer.terms", to: "/coming-soon" },
 ];
 
 const socials = [
@@ -36,6 +37,7 @@ const socials = [
 
 export default function Footer() {
   const footerRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const el = footerRef.current;
@@ -78,7 +80,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-500 text-sm mb-8">
-              Powering digital transformation since 1996
+              {t("footer.tagline")}
             </p>
             <div className="flex gap-4">
               {socials.map(({ icon: Icon, href }, i) => (
@@ -100,16 +102,16 @@ export default function Footer() {
             {/* Shop and Learn */}
             <div>
               <h3 className="text-[#e93d59] text-sm font-medium mb-5">
-                Shop and Learn
+                {t("footer.shopAndLearn")}
               </h3>
               <ul className="space-y-3">
-                {shopAndLearn.map(({ label, to }) => (
-                  <li key={label}>
+                {shopAndLearnLinks.map(({ key, to }) => (
+                  <li key={key}>
                     <Link
                       to={to}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
-                      {label}
+                      {t(key)}
                     </Link>
                   </li>
                 ))}
@@ -119,16 +121,16 @@ export default function Footer() {
             {/* Company */}
             <div>
               <h3 className="text-[#e93d59] text-sm font-medium mb-5">
-                Company
+                {t("footer.company")}
               </h3>
               <ul className="space-y-3">
-                {company.map((item) => (
-                  <li key={item}>
+                {companyLinks.map(({ key, to }) => (
+                  <li key={key}>
                     <Link
-                      to={item === "Contact" ? "/contact" : "/coming-soon"}
+                      to={to}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
-                      {item}
+                      {t(key)}
                     </Link>
                   </li>
                 ))}
@@ -142,7 +144,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <p className="text-gray-300 text-s footer-animate">
-          &copy; {new Date().getFullYear()} AL SERAJ Company. All rights reserved.
+          &copy; {new Date().getFullYear()} {t("footer.copyright")}
         </p>
       </div>
     </footer>

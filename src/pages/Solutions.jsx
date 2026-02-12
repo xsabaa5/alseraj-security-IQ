@@ -1,44 +1,15 @@
 import { FaShieldAlt, FaNetworkWired, FaBrain, FaHeadset } from "react-icons/fa";
 import { IoCloudOutline } from "react-icons/io5";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
+import { useTranslation } from "react-i18next";
 
 const solutions = [
-  {
-    icon: FaShieldAlt,
-    title: "Security Solutions",
-    description:
-      "Advanced security systems and monitoring solutions designed to protect your assets and ensure complete safety.",
-  },
-  {
-    icon: IoCloudOutline,
-    title: "Cyber Security",
-    description:
-      "The practice of protecting systems, networks, programs, and data from digital attacks, theft, or damage.",
-  },
-  {
-    icon: HiOutlineCodeBracket,
-    title: "Software Development",
-    description:
-      "Custom software solutions tailored to your business needs, built with cutting-edge technologies.",
-  },
-  {
-    icon: FaNetworkWired,
-    title: "Network Infrastructure",
-    description:
-      "Robust network design and implementation to ensure reliable connectivity, scalability, and performance.",
-  },
-  {
-    icon: FaBrain,
-    title: "Intelligent Solutions",
-    description:
-      "Advanced technologies that collect and analyze data to support informed decision-making.",
-  },
-  {
-    icon: FaHeadset,
-    title: "Technical Support",
-    description:
-      "24/7 dedicated technical support and maintenance services for uninterrupted operations.",
-  },
+  { icon: FaShieldAlt, key: "solutions.security" },
+  { icon: IoCloudOutline, key: "solutions.cyber" },
+  { icon: HiOutlineCodeBracket, key: "solutions.software" },
+  { icon: FaNetworkWired, key: "solutions.network" },
+  { icon: FaBrain, key: "solutions.intelligent" },
+  { icon: FaHeadset, key: "solutions.support" },
 ];
 
 function SolutionCard({ icon: Icon, title, description }) {
@@ -62,6 +33,8 @@ function SolutionCard({ icon: Icon, title, description }) {
 }
 
 export default function Solutions() {
+  const { t } = useTranslation();
+
   return (
     <section id="solutions" className="w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
       {/* Header */}
@@ -69,7 +42,7 @@ export default function Solutions() {
         <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59] shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
           <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-[#e93d59] rounded-full"></div>
           <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-            Our Solution
+            {t("solutions.badge")}
           </h1>
         </div>
       </div>
@@ -80,8 +53,8 @@ export default function Solutions() {
           <SolutionCard
             key={index}
             icon={solution.icon}
-            title={solution.title}
-            description={solution.description}
+            title={t(`${solution.key}.title`)}
+            description={t(`${solution.key}.description`)}
           />
         ))}
       </div>

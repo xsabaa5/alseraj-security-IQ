@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   FaArrowLeft,
   FaPhone,
@@ -12,28 +13,6 @@ import {
   FaTiktok,
   FaMapMarkedAlt,
 } from "react-icons/fa";
-
-const contactInfo = [
-  {
-    icon: FaPhone,
-    title: "Phone",
-    lines: ["+964 784 960 0500", "+964 781 107 0090"],
-  },
-  {
-    icon: FaEnvelope,
-    title: "Email",
-    lines: ["info@alseraj.iq", "marketing@alseraj.iq"],
-  },
-  {
-    icon: FaMapMarkerAlt,
-    title: "Location",
-    lines: ["Iraq / Baghdad / Sinaa St.", "In front of Al Rafidain Bank"],
-    link: {
-      label: "View on Google Maps",
-      href: "https://www.google.com/maps?ll=33.313688,44.439563&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=16529537251882699904",
-    },
-  },
-];
 
 const socials = [
   { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/34934372/admin/feed/posts/" },
@@ -51,6 +30,29 @@ export default function ContactUs() {
     subject: "",
     message: "",
   });
+  const { t } = useTranslation();
+
+  const contactInfo = [
+    {
+      icon: FaPhone,
+      title: t("contact.phone"),
+      lines: ["+964 784 960 0500", "+964 781 107 0090"],
+    },
+    {
+      icon: FaEnvelope,
+      title: t("contact.email"),
+      lines: ["info@alseraj.iq", "marketing@alseraj.iq"],
+    },
+    {
+      icon: FaMapMarkerAlt,
+      title: t("contact.location"),
+      lines: [t("contact.locationLine1"), t("contact.locationLine2")],
+      link: {
+        label: t("contact.viewOnMap"),
+        href: "https://www.google.com/maps?ll=33.313688,44.439563&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=16529537251882699904",
+      },
+    },
+  ];
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -69,7 +71,7 @@ export default function ContactUs() {
           hover:bg-[#e93d59] hover:text-white transition-all duration-300 group mb-12"
       >
         <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
-        <span>Back to Home</span>
+        <span>{t("contact.backToHome")}</span>
       </Link>
 
       {/* Header */}
@@ -78,11 +80,10 @@ export default function ContactUs() {
           className="text-[clamp(2.5rem,7vw,5rem)] font-light italic
             bg-linear-to-r from-[#e93d59] to-[#e93d59]/70 bg-clip-text text-transparent mb-4"
         >
-          Contact Us
+          {t("contact.title")}
         </h1>
         <p className="text-gray-400 text-[clamp(0.9rem,2vw,1.1rem)] max-w-xl mx-auto">
-          We'd love to hear from you. Get in touch with us for any inquiries or
-          support.
+          {t("contact.subtitle")}
         </p>
       </div>
 
@@ -147,11 +148,10 @@ export default function ContactUs() {
       <div className="max-w-4xl mx-auto mb-24">
         <div className="text-center mb-10">
           <h2 className="text-[clamp(1.8rem,5vw,3rem)] font-semibold mb-3">
-            Send us a Message
+            {t("contact.sendMessage")}
           </h2>
           <p className="text-gray-400 text-[clamp(0.85rem,2vw,1rem)]">
-            Fill out the form below and we'll get back to you as soon as
-            possible.
+            {t("contact.sendSubtitle")}
           </p>
         </div>
 
@@ -160,7 +160,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder={t("contact.yourName")}
               value={form.name}
               onChange={handleChange}
               className="w-full px-5 py-4 rounded-lg bg-white/5 border border-white/10
@@ -170,7 +170,7 @@ export default function ContactUs() {
             <input
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder={t("contact.yourEmail")}
               value={form.email}
               onChange={handleChange}
               className="w-full px-5 py-4 rounded-lg bg-white/5 border border-white/10
@@ -182,7 +182,7 @@ export default function ContactUs() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
+              placeholder={t("contact.phoneNumber")}
               value={form.phone}
               onChange={handleChange}
               className="w-full px-5 py-4 rounded-lg bg-white/5 border border-white/10
@@ -192,7 +192,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="subject"
-              placeholder="Subject"
+              placeholder={t("contact.subject")}
               value={form.subject}
               onChange={handleChange}
               className="w-full px-5 py-4 rounded-lg bg-white/5 border border-white/10
@@ -202,7 +202,7 @@ export default function ContactUs() {
           </div>
           <textarea
             name="message"
-            placeholder="Your Message"
+            placeholder={t("contact.yourMessage")}
             rows={6}
             value={form.message}
             onChange={handleChange}
@@ -216,7 +216,7 @@ export default function ContactUs() {
               text-white text-lg font-medium tracking-wide
               transition-all duration-300 cursor-pointer"
           >
-            Send Message
+            {t("contact.send")}
           </button>
         </form>
       </div>
@@ -224,7 +224,7 @@ export default function ContactUs() {
       {/* Connect With Us */}
       <div className="text-center pb-12">
         <h3 className="text-[clamp(1.2rem,3vw,1.8rem)] font-medium mb-8">
-          Connect with us
+          {t("contact.connectWithUs")}
         </h3>
         <div className="flex justify-center gap-5">
           {socials.map(({ icon: Icon, href }, i) => (

@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export default function ComingSoon() {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full h-screen flex items-center justify-center bg-black px-6 relative overflow-hidden">
       {/* Decorative background blobs */}
@@ -30,7 +33,7 @@ export default function ComingSoon() {
             animate-fade-in-up-gradient"
           style={{ "--delay": "0.5s" }}
         >
-          COMING SOON
+          {t("comingSoon.title")}
         </h1>
 
         {/* Subtitle */}
@@ -39,7 +42,7 @@ export default function ComingSoon() {
             animate-fade-in-up"
           style={{ "--delay": "0.7s" }}
         >
-          Something Amazing Is On The Way
+          {t("comingSoon.subtitle")}
         </p>
 
         {/* Back Button */}
@@ -52,7 +55,7 @@ export default function ComingSoon() {
           style={{ "--delay": "0.9s" }}
         >
           <FaArrowLeft className="text-lg group-hover:-translate-x-1 transition-transform duration-300" />
-          <span>Back to Home</span>
+          <span>{t("comingSoon.backToHome")}</span>
         </Link>
       </div>
     </section>
