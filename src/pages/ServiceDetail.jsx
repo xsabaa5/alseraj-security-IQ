@@ -239,12 +239,12 @@ export default function ServiceDetail() {
         {/* Camera 3D Model — only on cameras page */}
         {isCamera && (
           <CctvCamera
-            rotation={[-0.2, 0, 0]}
+            rotation={[0, 40, 0]}
             style={{
               position: "absolute",
               top: "18%",
-              left: "5vw",
-              width: "15vw",
+              left: "4vw",
+              width: "20vw",
               height: "60vh",
               zIndex: 999,
               Scale: 2,
