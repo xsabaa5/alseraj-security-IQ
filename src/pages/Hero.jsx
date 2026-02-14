@@ -13,11 +13,11 @@ export default function Hero() {
           <span className="text-white/90 font-extralight tracking-[0.15em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs md:text-sm lg:text-base">
             {t("hero.technology")}
           </span>
-          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-purple-400/80" />
+          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-pink-500/80" />
           <span className="text-white/90 font-extralight tracking-[0.15em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs md:text-sm lg:text-base">
             {t("hero.security")}
           </span>
-          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400/80" />
+          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-orange-500/80" />
           <span className="text-white/90 font-extralight tracking-[0.15em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs md:text-sm lg:text-base">
             {t("hero.reliability")}
           </span>

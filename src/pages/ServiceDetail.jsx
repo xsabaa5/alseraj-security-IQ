@@ -10,6 +10,7 @@ import droneModel from "../assets/3D Assets/drone.glb";
 import CctvCamera from "../components/CctvCamera";
 import itVideo from "../assets/images/IT.mp4";
 import cyberVideo from "../assets/images/cyber-security.mp4";
+import roboticsVideo from "../assets/images/mobile robotics.mp4";
 import {
   FaServer,
   FaRobot,
@@ -114,6 +115,7 @@ export default function ServiceDetail() {
   const isCamera = slug === "cameras";
   const isIT = slug === "information-technology";
   const isCyber = slug === "cyber-security";
+  const isRobotics = slug === "mobile-robotics";
 
   useEffect(() => {
     if (!isDrone) return;
@@ -288,7 +290,29 @@ export default function ServiceDetail() {
           </>
         )}
 
-        {!isDrone && !isCamera && !isIT && !isCyber && (
+        {/* Mobile Robotics Video Background */}
+        {isRobotics && (
+          <>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
+            >
+              <source src={roboticsVideo} type="video/mp4" />
+            </video>
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, transparent -15%,black 75%)",
+              }}
+            />
+          </>
+        )}
+
+        {!isDrone && !isCamera && !isIT && !isCyber && !isRobotics && (
           <div
             className="w-28 h-28 rounded-full bg-[#e93d59]/15 border border-[#e93d59]/30
             flex items-center justify-center mb-10"

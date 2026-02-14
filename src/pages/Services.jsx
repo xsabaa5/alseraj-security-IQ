@@ -12,6 +12,7 @@ const services = [
   { icon: FaShieldAlt, key: "services.cyber", slug: "cyber-security" },
 ];
 
+// eslint-disable-next-line no-unused-vars
 function ServiceCard({ icon: Icon, title, slug, description }) {
   return (
     <Link to={`/services/${slug}`} className="group relative bg-linear-to-br
