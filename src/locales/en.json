@@ -19,6 +19,8 @@
   },
   "services": {
     "badge": "Our Products",
+    "headline": "Technology that moves you forward.",
+    "subtitle": "Advanced solutions designed to transform how you operate, secure, and innovate.",
     "drone": {
       "title": "Drone",
       "description": "Advanced aerial surveillance and monitoring systems"
