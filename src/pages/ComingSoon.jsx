@@ -48,9 +48,7 @@ export default function ComingSoon() {
         {/* Back Button */}
         <Link
           to="/"
-          className="inline-flex items-center gap-3 px-10 py-4.5 border-2 border-[#e93d59] rounded-full
-            text-[#e93d59] text-[clamp(0.9rem,2vw,1.1rem)] font-normal tracking-[1px]
-            hover: hover:text-white transition-all duration-400 cursor-pointer
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-10 py-4.5 text-[clamp(0.9rem,2vw,1.1rem)] text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10
             animate-fade-in-up group"
           style={{ "--delay": "0.9s" }}
         >

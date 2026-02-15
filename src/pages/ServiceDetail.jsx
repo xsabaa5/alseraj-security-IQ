@@ -202,9 +202,7 @@ export default function ServiceDetail() {
         {/* Back to Home */}
         <Link
           to="/"
-          className="absolute top-8 start-8 z-10 inline-flex items-center gap-2 px-6 py-2.5 border border-[#e93d59] rounded-full
-            text-[#e93d59] text-sm font-normal tracking-wide
-            hover:text-white transition-all duration-300 group"
+          className="absolute top-8 start-8 z-10 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-6 py-2.5 text-sm text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 group"
         >
           <FaArrowLeft className="text-sm group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
           <span>{t("serviceDetail.backToHome")}</span>
@@ -229,7 +227,7 @@ export default function ServiceDetail() {
                 right: "25%",
                 width: "30vw",
                 height: "100vh",
-                transform: "translate(-50%, -50%)",
+                transform: "translate(-20%, -20%)",
                 zIndex: 999,
                 pointerEvents: "none",
                 background: "transparent",
@@ -353,10 +351,10 @@ export default function ServiceDetail() {
         <div className="max-w-4xl mx-auto mb-24 text-center">
           <div className="flex justify-center mb-8">
             <div
-              className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] border border-[#e93d59]
-                shadow-[0_4px_10px_rgba(56,46,62,0.284)] flex items-center gap-[clamp(6px,1.5vw,8px)]"
+              className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px]
+                shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]"
             >
-              <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-[#e93d59] rounded-full"></div>
+              <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
               <h2 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
                 {t("serviceDetail.aboutService")}
               </h2>

@@ -18,7 +18,7 @@ const services = [
     icon: GiDeliveryDrone,
     key: "services.drone",
     slug: "drone",
-    accent: "#3b82f6",
+    accent: "#ffffff",
     image: "/drone .jpeg",
   },
   {
@@ -33,21 +33,21 @@ const services = [
     icon: FaServer,
     key: "services.it",
     slug: "information-technology",
-    accent: "#8b5cf6",
+    accent: "#3b82f6",
     image: "/IT.jpeg",
   },
   {
     icon: FaRobot,
     key: "services.robotics",
     slug: "mobile-robotics",
-    accent: "#10b981",
+    accent: "#f59e0b",
     image: "/woopicx.com-3eaf022a-66a4-4fb8-8ba0-1d0b9e2efaf7.png.png",
   },
   {
     icon: FaShieldAlt,
     key: "services.cyber",
     slug: "cyber-security",
-    accent: "#f59e0b",
+    accent: "#3b82f6",
     image: "/cyber .jpeg",
   },
 ];
@@ -228,18 +228,15 @@ export default function Services() {
       {/* Header */}
       <div
         ref={headerRef}
-        className="relative z-10 text-center mb-14 lg:mb-20 max-w-2xl mx-auto"
+        className="relative z-10 text-center mb-14 lg:mb-20 max-w-5xl mx-auto"
       >
         {/* Badge */}
         <div data-animate className="flex justify-center mb-8">
-          <div
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full
-              border border-[#e93d59]/25 bg-[#e93d59]/4"
-          >
-            <div className="w-1.5 h-1.5 bg-[#e93d59] rounded-full" />
-            <span className="text-xs font-medium text-[#e93d59]/80 uppercase tracking-[0.2em]">
+          <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
+            <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
+            <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
               {t("services.badge")}
-            </span>
+            </h1>
           </div>
         </div>
 
