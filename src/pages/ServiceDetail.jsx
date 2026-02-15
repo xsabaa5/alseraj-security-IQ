@@ -202,11 +202,11 @@ export default function ServiceDetail() {
         {/* Back to Home */}
         <Link
           to="/"
-          className="absolute top-8 left-8 z-10 inline-flex items-center gap-2 px-6 py-2.5 border border-[#e93d59] rounded-full
+          className="absolute top-8 start-8 z-10 inline-flex items-center gap-2 px-6 py-2.5 border border-[#e93d59] rounded-full
             text-[#e93d59] text-sm font-normal tracking-wide
             hover:text-white transition-all duration-300 group"
         >
-          <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
+          <FaArrowLeft className="text-sm group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
           <span>{t("serviceDetail.backToHome")}</span>
         </Link>
 
@@ -429,7 +429,7 @@ export default function ServiceDetail() {
               transition-all duration-300 group"
           >
             <span>{t("serviceDetail.contactUs")}</span>
-            <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
+            <FaArrowRight className="text-sm group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </div>

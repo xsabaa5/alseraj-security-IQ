@@ -15,11 +15,17 @@ import {
 } from "react-icons/fa";
 
 const socials = [
-  { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/34934372/admin/feed/posts/" },
+  {
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/company/34934372/admin/feed/posts/",
+  },
   { icon: FaYoutube, href: "https://www.youtube.com/@alserajcompany2735" },
   { icon: FaFacebookF, href: "https://www.facebook.com/Alseraj.almodeeh/" },
   { icon: FaInstagram, href: "https://www.instagram.com/alseraj.co/" },
-  { icon: FaTiktok, href: "https://www.tiktok.com/@alseraj.almodeeh?_t=8ocPGrrxWwk&_r=1" },
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@alseraj.almodeeh?_t=8ocPGrrxWwk&_r=1",
+  },
 ];
 
 export default function ContactUs() {
@@ -70,7 +76,7 @@ export default function ContactUs() {
           text-[#e93d59] text-sm font-normal tracking-wide
           hover:bg-[#e93d59] hover:text-white transition-all duration-300 group mb-12"
       >
-        <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
+        <FaArrowLeft className="text-sm group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
         <span>{t("contact.backToHome")}</span>
       </Link>
 
@@ -91,6 +97,7 @@ export default function ContactUs() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 mb-24">
         {/* Info Cards */}
         <div className="flex flex-col gap-6">
+          {/* eslint-disable-next-line no-unused-vars */}
           {contactInfo.map(({ icon: Icon, title, lines, link }) => (
             <div
               key={title}
@@ -108,7 +115,11 @@ export default function ContactUs() {
                   {title}
                 </h3>
                 {lines.map((line) => (
-                  <p key={line} className="text-gray-400 text-sm leading-relaxed">
+                  <p
+                    key={line}
+                    dir="ltr"
+                    className="text-gray-400 text-sm leading-relaxed rtl:text-right"
+                  >
                     {line}
                   </p>
                 ))}
@@ -136,7 +147,11 @@ export default function ContactUs() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8!2d44.439563!3d33.313688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15577e1041f7e58d%3A0xe56039b4e51c4480!2sAl%20Seraj%20Co.%20for%20Information%20Technology!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
             width="100%"
             height="100%"
-            style={{ border: 0, minHeight: "400px", filter: "invert(90%) hue-rotate(180deg)" }}
+            style={{
+              border: 0,
+              minHeight: "400px",
+              filter: "invert(90%) hue-rotate(180deg)",
+            }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -181,6 +196,7 @@ export default function ContactUs() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <input
               type="tel"
+              dir="auto"
               name="phone"
               placeholder={t("contact.phoneNumber")}
               value={form.phone}
@@ -227,6 +243,7 @@ export default function ContactUs() {
           {t("contact.connectWithUs")}
         </h3>
         <div className="flex justify-center gap-5">
+          {/* eslint-disable-next-line no-unused-vars */}
           {socials.map(({ icon: Icon, href }, i) => (
             <a
               key={i}

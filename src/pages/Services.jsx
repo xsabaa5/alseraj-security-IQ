@@ -27,6 +27,7 @@ const services = [
     slug: "cameras",
     accent: "#e93d59",
     image: "/cctv cmaera.jpeg",
+    imagePosition: "center 20%",
   },
   {
     icon: FaServer,
@@ -51,16 +52,26 @@ const services = [
   },
 ];
 
-// eslint-disable-next-line no-unused-vars
-function ServiceCard({ icon: Icon, title, slug, description, accent, featured, image }) {
+/* eslint-disable no-unused-vars */
+function ServiceCard({
+  icon: Icon,
+  title,
+  slug,
+  description,
+  accent,
+  featured,
+  image,
+  imagePosition,
+}) {
+  /* eslint-enable no-unused-vars */
   return (
     <Link
       to={`/services/${slug}`}
       className={`service-card group relative flex flex-col h-full rounded-3xl overflow-hidden
         cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
         hover:-translate-y-1.5
-        ${featured ? "min-h-[320px] lg:min-h-[380px]" : "min-h-[280px] lg:min-h-[320px]"}
-        border border-white/[0.08] hover:border-white/[0.15]`}
+        ${featured ? "min-h-80 lg:min-h-95" : "min-h-70 lg:min-h-80"}
+        border border-white/8 hover:border-white/15`}
     >
       {/* Background image — zooms on hover */}
       <img
@@ -70,10 +81,11 @@ function ServiceCard({ icon: Icon, title, slug, description, accent, featured, i
         className="absolute inset-0 w-full h-full object-cover
           transition-transform duration-700 ease-out
           group-hover:scale-[1.05]"
+        style={imagePosition ? { objectPosition: imagePosition } : undefined}
       />
 
       {/* Gradient overlay — solid at bottom for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />
 
       {/* Accent-tinted overlay on hover */}
       <div
@@ -205,12 +217,12 @@ export default function Services() {
       id="services"
       ref={sectionRef}
       className="min-h-screen w-full flex flex-col items-center justify-center
-        px-5 py-20 md:px-10 lg:px-16 lg:py-32 bg-black relative overflow-hidden"
+       py-20 px-10 sm:px-45 md:px-10 lg:px-16 lg:py-32 bg-black relative overflow-hidden"
     >
       {/* Ambient background glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-          w-[800px] h-[800px] bg-[#e93d59]/[0.015] rounded-full blur-[150px] pointer-events-none"
+          w-200 h-200 bg-[#e93d59]/1.5 rounded-full blur-[150px] pointer-events-none"
       />
 
       {/* Header */}
@@ -222,7 +234,7 @@ export default function Services() {
         <div data-animate className="flex justify-center mb-8">
           <div
             className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full
-              border border-[#e93d59]/25 bg-[#e93d59]/[0.04]"
+              border border-[#e93d59]/25 bg-[#e93d59]/4"
           >
             <div className="w-1.5 h-1.5 bg-[#e93d59] rounded-full" />
             <span className="text-xs font-medium text-[#e93d59]/80 uppercase tracking-[0.2em]">
@@ -252,7 +264,7 @@ export default function Services() {
       {/* Bento Grid */}
       <div
         ref={gridRef}
-        className="relative z-10 w-full max-w-[1100px]
+        className="relative z-10 w-full max-w-275
           grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3"
       >
         {services.map((service, index) => (
@@ -274,6 +286,7 @@ export default function Services() {
               accent={service.accent}
               featured={index < 2}
               image={service.image}
+              imagePosition={service.imagePosition}
             />
           </div>
         ))}

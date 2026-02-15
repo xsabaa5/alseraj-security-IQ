@@ -54,7 +54,7 @@ export default function ComingSoon() {
             animate-fade-in-up group"
           style={{ "--delay": "0.9s" }}
         >
-          <FaArrowLeft className="text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+          <FaArrowLeft className="text-lg group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
           <span>{t("comingSoon.backToHome")}</span>
         </Link>
       </div>
