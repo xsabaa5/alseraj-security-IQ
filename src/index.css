@@ -115,3 +115,7 @@ model-viewer {
     animation-delay: var(--delay, 0s);
   }
 }
+
+.done {
+  text-decoration: line-through;
+}

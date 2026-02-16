@@ -42,12 +42,12 @@ export default function ContactUs() {
     {
       icon: FaPhone,
       title: t("contact.phone"),
-      lines: ["+964 784 960 0500", "+964 781 107 0090"],
+      lines: ["00971 50 205 5730"],
     },
     {
       icon: FaEnvelope,
       title: t("contact.email"),
-      lines: ["info@alseraj.iq", "marketing@alseraj.iq"],
+      lines: ["info@alseraj.ae"],
     },
     {
       icon: FaMapMarkerAlt,
@@ -55,7 +55,7 @@ export default function ContactUs() {
       lines: [t("contact.locationLine1"), t("contact.locationLine2")],
       link: {
         label: t("contact.viewOnMap"),
-        href: "https://www.google.com/maps?ll=33.313688,44.439563&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=16529537251882699904",
+        href: "https://www.google.com/maps/search/8C97+JVV+Industrial+Area+6+Sharjah+UAE",
       },
     },
   ];
@@ -142,7 +142,7 @@ export default function ContactUs() {
         <div className="rounded-xl overflow-hidden border border-white/10">
           <iframe
             title="Al Seraj Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8!2d44.439563!3d33.313688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15577e1041f7e58d%3A0xe56039b4e51c4480!2sAl%20Seraj%20Co.%20for%20Information%20Technology!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
+            src="https://maps.google.com/maps?q=8C97%2BJVV+Industrial+Area+6+Sharjah+UAE&z=16&output=embed"
             width="100%"
             height="100%"
             style={{
