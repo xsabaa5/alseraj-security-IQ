@@ -67,13 +67,6 @@ function About() {
       id="about"
       className="w-full min-h-screen text-white flex flex-col justify-center items-center text-center gap-[clamp(30px,5vw,50px)] py-20 px-[5%]"
     >
-      <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
-        <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
-        <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-          {t("about.badge")}
-        </h1>
-      </div>
-
       <div className="px-[5%]">
         <h1
           ref={textRef}

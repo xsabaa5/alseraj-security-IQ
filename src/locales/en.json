@@ -19,9 +19,8 @@
     "text": "Integrated technology and security solutions powering digital transformation since 1996."
   },
   "services": {
-    "badge": "Our Products",
-    "headline": "Technology that moves you forward.",
-    "subtitle": "Advanced solutions designed to transform how you operate, secure, and innovate.",
+    "headline": "Our Products",
+    "subtitle": "Technology that moves you forward.",
     "drone": {
       "title": "Drone",
       "description": "Advanced aerial surveillance and monitoring systems"
@@ -71,8 +70,7 @@
     }
   },
   "faq": {
-    "badge": "FAQ",
-    "title": "Frequently Asked Questions",
+    "title": "FAQ",
     "q1": "What services does AL-SERAJ provide?",
     "a1": "We provide comprehensive technology and security solutions including cybersecurity, drones, cameras, mobile-robotics and intelligent automation.",
     "q2": "How long have we been in business?",

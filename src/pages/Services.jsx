@@ -230,21 +230,10 @@ export default function Services() {
         ref={headerRef}
         className="relative z-10 text-center mb-14 lg:mb-20 max-w-5xl mx-auto"
       >
-        {/* Badge */}
-        <div data-animate className="flex justify-center mb-8">
-          <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
-            <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
-            <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-              {t("services.badge")}
-            </h1>
-          </div>
-        </div>
-
         {/* Headline */}
         <h2
           data-animate
-          className="text-[clamp(2rem,5.5vw,3.5rem)] font-semibold text-white
-            tracking-[-0.035em] leading-[1.1] mb-5"
+          className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center  tracking-tight"
         >
           {t("services.headline")}
         </h2>
@@ -252,7 +241,7 @@ export default function Services() {
         {/* Subtitle */}
         <p
           data-animate
-          className="text-[#555] text-[clamp(0.95rem,2vw,1.1rem)] leading-relaxed"
+          className="text-[#555] text-[clamp(1rem,2vw,1.5rem)] leading-relaxed"
         >
           {t("services.subtitle")}
         </p>

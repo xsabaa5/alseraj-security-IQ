@@ -202,7 +202,7 @@ export default function ServiceDetail() {
         {/* Back to Home */}
         <Link
           to="/"
-          className="absolute top-8 start-8 z-10 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-6 py-2.5 text-sm text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 group"
+          className="absolute top-20 start-8 z-10 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-6 py-2.5 text-sm text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 group"
         >
           <FaArrowLeft className="text-sm group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
           <span>{t("serviceDetail.backToHome")}</span>
@@ -349,17 +349,9 @@ export default function ServiceDetail() {
       <div className="px-6 py-12">
         {/* About This Service */}
         <div className="max-w-4xl mx-auto mb-24 text-center">
-          <div className="flex justify-center mb-8">
-            <div
-              className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px]
-                shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]"
-            >
-              <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
-              <h2 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-                {t("serviceDetail.aboutService")}
-              </h2>
-            </div>
-          </div>
+          <h2 className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight">
+            {t("serviceDetail.aboutService")}
+          </h2>
           <p className="text-gray-300 text-[clamp(0.95rem,2vw,1.1rem)] leading-relaxed max-w-3xl mx-auto">
             {overview}
           </p>
@@ -367,7 +359,7 @@ export default function ServiceDetail() {
 
         {/* Key Features */}
         <div className="max-w-6xl mx-auto mb-24">
-          <h2 className="text-[clamp(1.8rem,5vw,3rem)] font-light italic text-center mb-14">
+          <h2 className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight">
             {t("serviceDetail.keyFeatures")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -394,7 +386,7 @@ export default function ServiceDetail() {
 
         {/* Technical Specifications */}
         <div className="max-w-5xl mx-auto mb-24">
-          <h2 className="text-[clamp(1.8rem,5vw,3rem)] font-light italic text-center mb-14">
+          <h2 className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight">
             {t("serviceDetail.techSpecs")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">

@@ -130,7 +130,7 @@ export default function NavBar() {
                       : "invisible opacity-0 -translate-y-2"
                   }`}
                 >
-                  <div className="w-80 rounded-xl border border-white/10 bg-[rgba(10,10,15,0.85)] backdrop-blur-2xl p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                  <div className="w-80 rounded-xl border border-white/10 bg-black p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                     {products.map((product) => (
                       <Link
                         key={product.slug}

@@ -160,7 +160,7 @@ export default function ContactUs() {
       {/* Send Message Form */}
       <div className="max-w-4xl mx-auto mb-24">
         <div className="text-center mb-10">
-          <h2 className="text-[clamp(1.8rem,5vw,3rem)] font-semibold mb-3">
+          <h2 className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight">
             {t("contact.sendMessage")}
           </h2>
           <p className="text-gray-400 text-[clamp(0.85rem,2vw,1rem)]">

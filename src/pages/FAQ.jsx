@@ -64,18 +64,8 @@ export default function FAQ() {
 
   return (
     <section className="w-full flex flex-col items-center justify-center p-6 lg:p-20 bg-black">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-min px-[clamp(12px,2vw,16px)] py-[clamp(6px,1.5vw,8px)] rounded-[30px] shadow-[10px_0_50px_rgba(100,46,62,0.8)] flex items-center gap-[clamp(6px,1.5vw,8px)]">
-          <div className="w-[clamp(18px,3vw,24px)] h-[clamp(18px,3vw,24px)] border border-red-600/25 rounded-full"></div>
-          <h1 className="text-[clamp(14px,2.5vw,20px)] font-thin whitespace-nowrap">
-            {t("faq.badge")}
-          </h1>
-        </div>
-      </div>
-
       {/* Title */}
-      <h2 className="text-white text-[clamp(1.5rem,4vw,2.5rem)] font-thin mb-12 text-center">
+      <h2 className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight">
         {t("faq.title")}
       </h2>
 

@@ -51,7 +51,6 @@ function App() {
   const location = useLocation();
   const isComingSoon = location.pathname === "/coming-soon";
   const isContact = location.pathname === "/contact";
-  const isServiceDetail = location.pathname.startsWith("/services/");
 
   useEffect(() => {
     if (lenisRef.current) {
@@ -63,7 +62,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
-      {!isComingSoon && !isContact && !isServiceDetail && <Navbar />}
+      {!isComingSoon && !isContact && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -72,7 +71,7 @@ function App() {
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
-      {!isComingSoon && !isContact && !isServiceDetail && <Footer />}
+      {!isComingSoon && !isContact && <Footer />}
     </div>
   );
 }
