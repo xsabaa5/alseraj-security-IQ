@@ -116,6 +116,35 @@ model-viewer {
   }
 }
 
+@keyframes loaderSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@layer utilities {
+  .animate-loader-slide {
+    width: 40%;
+    animation: loaderSlide 1.2s ease-in-out infinite;
+  }
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+}
+
 .done {
   text-decoration: line-through;
 }
