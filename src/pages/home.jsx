@@ -3,7 +3,6 @@ import About from "./About";
 import Services from "./Services";
 import Solutions from "./Solutions";
 import FAQ from "./FAQ";
-import Draft from "../../components/draft";
 
 function Home() {
   return (

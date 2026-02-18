@@ -71,7 +71,7 @@ function App() {
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
-      {!isComingSoon && !isContact && <Footer />}
+      {!isComingSoon && !isContact && <Footer key={location.pathname} />}
     </div>
   );
 }
