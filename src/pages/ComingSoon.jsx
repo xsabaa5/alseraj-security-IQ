@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 

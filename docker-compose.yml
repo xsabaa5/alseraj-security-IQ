@@ -1,0 +1,23 @@
+services:
+  alseraj-ae-website:
+    build: .
+    container_name: alseraj-ae-website
+    restart: unless-stopped
+    networks:
+      - traefik-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 5s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.alseraj-ae-website.rule=Host(`alseraj.ae`) || Host(`www.alseraj.ae`)"
+      - "traefik.http.routers.alseraj-ae-website.entrypoints=websecure"
+      - "traefik.http.routers.alseraj-ae-website.tls.certresolver=letsencrypt"
+      - "traefik.http.services.alseraj-ae-website.loadbalancer.server.port=80"
+
+networks:
+  traefik-network:
+    external: true

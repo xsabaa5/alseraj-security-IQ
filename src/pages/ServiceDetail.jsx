@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from "react-router";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { GiDeliveryDrone } from "react-icons/gi";

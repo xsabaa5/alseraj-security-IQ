@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Routes, Route, useLocation } from "react-router";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Lenis from "lenis";
 import { gsap } from "gsap";
