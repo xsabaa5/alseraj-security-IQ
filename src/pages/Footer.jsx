@@ -11,12 +11,12 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 
-const shopAndLearnLinks = [
-  { key: "footer.drone", to: "/services/drone" },
-  { key: "footer.camera", to: "/services/cameras" },
-  { key: "footer.it", to: "/services/information-technology" },
-  { key: "footer.robotics", to: "/services/mobile-robotics" },
-  { key: "footer.cyber", to: "/services/cyber-security" },
+const productLinks = [
+  { label: "Drones (UAVs)", to: "/products?category=drones" },
+  { label: "Payloads & Sensors", to: "/products?category=payloads-sensors" },
+  { label: "GNSS", to: "/products?category=gnss" },
+  { label: "Marine Surveying", to: "/products?category=marine-surveying" },
+  { label: "Software", to: "/products?category=software" },
 ];
 
 const companyLinks = [
@@ -74,9 +74,9 @@ export default function Footer() {
           <div className="footer-animate">
             <Link to="#home">
               <img
-                src="/logo.png"
+                src="/box-logo.png"
                 alt="Al Seraj Company Logo"
-                className="h-auto w-50 mb-5"
+                className="h-10 w-auto mb-5"
               />
             </Link>
             <p className="text-gray-500 text-sm mb-8">
@@ -99,19 +99,19 @@ export default function Footer() {
 
           {/* Links columns */}
           <div className="flex gap-20 footer-animate">
-            {/* Shop and Learn */}
+            {/* Products */}
             <div>
               <h3 className="text-[#e93d59] text-sm font-medium mb-5">
-                {t("footer.shopAndLearn")}
+                Products
               </h3>
               <ul className="space-y-3">
-                {shopAndLearnLinks.map(({ key, to }) => (
-                  <li key={key}>
+                {productLinks.map(({ label, to }) => (
+                  <li key={label}>
                     <Link
                       to={to}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
-                      {t(key)}
+                      {label}
                     </Link>
                   </li>
                 ))}

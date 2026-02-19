@@ -31,12 +31,12 @@ import { Readable } from "stream";
 import { pipeline } from "stream/promises";
 
 // ─── Config ────────────────────────────────────────────────────────────────
-const BASE_URL   = "https://gnss.ae/wp-json/wp/v2";
-const PER_PAGE   = 100;
-const OUT_DIR    = "./products";
-const IMG_DIR    = path.join(OUT_DIR, "images");
+const BASE_URL = "https://gnss.ae/wp-json/wp/v2";
+const PER_PAGE = 100;
+const OUT_DIR = "./products";
+const IMG_DIR = path.join(OUT_DIR, "images");
 const CONCURRENT = 5;
-const POLITE_MS  = 300;
+const POLITE_MS = 300;
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -54,10 +54,14 @@ async function fetchJSON(url) {
 function stripHTML(html = "") {
   return html
     .replace(/<[^>]*>/g, "")
-    .replace(/&#8217;/g, "\u2019").replace(/&#8216;/g, "\u2018")
-    .replace(/&#8220;/g, "\u201C").replace(/&#8221;/g, "\u201D")
-    .replace(/&#038;/g, "&").replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&#8217;/g, "\u2019")
+    .replace(/&#8216;/g, "\u2018")
+    .replace(/&#8220;/g, "\u201C")
+    .replace(/&#8221;/g, "\u201D")
+    .replace(/&#038;/g, "&")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
     .replace(/&nbsp;/g, " ")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -71,12 +75,18 @@ function prog(label, done, total) {
 // ─── 1. Fetch all products ─────────────────────────────────────────────────
 async function fetchAllProducts() {
   console.log("\n⏳ Fetching products…");
-  const first = await fetchJSON(`${BASE_URL}/product?per_page=${PER_PAGE}&page=1`);
-  console.log(`   Found ${first.totalItems} products across ${first.totalPages} page(s).`);
+  const first = await fetchJSON(
+    `${BASE_URL}/product?per_page=${PER_PAGE}&page=1`,
+  );
+  console.log(
+    `   Found ${first.totalItems} products across ${first.totalPages} page(s).`,
+  );
 
   let all = [...first.data];
   for (let page = 2; page <= first.totalPages; page++) {
-    const { data } = await fetchJSON(`${BASE_URL}/product?per_page=${PER_PAGE}&page=${page}`);
+    const { data } = await fetchJSON(
+      `${BASE_URL}/product?per_page=${PER_PAGE}&page=${page}`,
+    );
     all.push(...data);
     prog("Pages", page, first.totalPages);
     await sleep(POLITE_MS);
@@ -106,7 +116,7 @@ async function resolveMedia(ids) {
         } catch (e) {
           console.warn(`\n   ⚠ media/${id}: ${e.message}`);
         }
-      })
+      }),
     );
     prog("Media", Math.min(i + 20, unique.length), unique.length);
     await sleep(POLITE_MS);
@@ -126,7 +136,7 @@ async function resolveCategories(ids) {
     const batch = unique.slice(i, i + 100);
     try {
       const { data } = await fetchJSON(
-        `${BASE_URL}/product_cat?include=${batch.join(",")}&per_page=100`
+        `${BASE_URL}/product_cat?include=${batch.join(",")}&per_page=100`,
       );
       for (const c of data) {
         map.set(c.id, { name: c.name, slug: c.slug, parent: c.parent });
@@ -154,7 +164,12 @@ async function downloadImages(imageQueue) {
     while (queue.length) {
       const { url, dest } = queue.shift();
       try {
-        try { await fs.access(dest); done++; prog("Images", done, total); continue; } catch {}
+        try {
+          await fs.access(dest);
+          done++;
+          prog("Images", done, total);
+          continue;
+        } catch {}
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         await pipeline(Readable.fromWeb(res.body), createWriteStream(dest));
@@ -196,11 +211,16 @@ function transform(raw, mediaMap, catMap) {
       contentHtml: p.content?.rendered || "",
       date: p.date,
       categories: (p.product_cat || []).map(
-        (cid) => catMap.get(cid) || { name: "Unknown", slug: "" }
+        (cid) => catMap.get(cid) || { name: "Unknown", slug: "" },
       ),
       brands: (p.brands || []).map((b) => ({ name: b.name, slug: b.slug })),
       image: localFile
-        ? { file: localFile, alt: media.alt, width: media.width, height: media.height }
+        ? {
+            file: localFile,
+            alt: media.alt,
+            width: media.width,
+            height: media.height,
+          }
         : null,
     };
   });
@@ -212,9 +232,11 @@ function transform(raw, mediaMap, catMap) {
 async function main() {
   console.log("🚀 GNSS.ae Product Exporter");
 
-  const raw      = await fetchAllProducts();
+  const raw = await fetchAllProducts();
   const mediaMap = await resolveMedia(raw.map((p) => p.featured_media));
-  const catMap   = await resolveCategories(raw.flatMap((p) => p.product_cat || []));
+  const catMap = await resolveCategories(
+    raw.flatMap((p) => p.product_cat || []),
+  );
 
   const { products, imageQueue } = transform(raw, mediaMap, catMap);
 
@@ -226,7 +248,11 @@ async function main() {
   console.log(`\n📄 ${productsPath}  (${products.length} products)`);
 
   const catsPath = path.join(OUT_DIR, "categories.json");
-  await fs.writeFile(catsPath, JSON.stringify([...catMap.values()], null, 2), "utf-8");
+  await fs.writeFile(
+    catsPath,
+    JSON.stringify([...catMap.values()], null, 2),
+    "utf-8",
+  );
   console.log(`📄 ${catsPath}`);
 
   console.log("\n────────────────────────────────────────");

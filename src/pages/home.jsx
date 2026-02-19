@@ -1,7 +1,8 @@
 import Hero from "./Hero";
 import About from "./About";
 import Services from "./Services";
-import Solutions from "./Solutions";
+import Gallery from "./Solutions";
+import Brands from "./Brands";
 import FAQ from "./FAQ";
 
 function Home() {
@@ -10,7 +11,8 @@ function Home() {
       <Hero />
       <About />
       <Services />
-      <Solutions />
+      <Brands />
+      <Gallery />
       <FAQ />
     </div>
   );

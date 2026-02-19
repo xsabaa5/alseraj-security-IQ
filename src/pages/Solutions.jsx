@@ -1,136 +1,189 @@
-import { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const solutions = [
-  { image: "/1.avif", key: "solutions.security", span: 2 },
-  { image: "/2.avif", key: "solutions.cyber", span: 1 },
-  { image: "/3.avif", key: "solutions.software", span: 1 },
-  { image: "/5.avif", key: "solutions.intelligent", span: 1 },
-  { image: "/6.avif", key: "solutions.support", span: 1 },
-];
+const imageFiles = Object.values(
+  import.meta.glob("../assets/images/*.JPG", { eager: true, query: "?url", import: "default" }),
+);
 
-function SolutionCard({ image, title, description, span }) {
-  return (
-    <div
-      className={`solution-card group relative rounded-2xl border border-white/8 hover:border-white/20 transition-colors duration-500 ease-in-out overflow-hidden ${
-        span === 2 ? "col-span-1 sm:col-span-2" : "col-span-1"
-      }`}
-      style={{
-        background: "#0a0a0e",
-        minHeight: span === 2 ? "420px" : "460px",
-      }}
-    >
-      {/* Background image */}
-      <img
-        src={image}
-        alt=""
-        className={
-          "absolute -top-16 inset-0 w-full h-full object-cover object-center group-hover:opacity-70 group-hover:scale-[1.03] transition-all ease-in-out duration-500"
-        }
-      />
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col justify-between h-full p-7">
-        {/* Title */}
-        <h3 className="text-[25px] font-semibold text-white">{title}</h3>
-
-        {/* Description */}
-        <p className="text-[14px] leading-relaxed text-white/50 mt-auto">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export default function Solutions() {
-  const { t } = useTranslation();
+export default function Gallery() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const gridRef = useRef(null);
+  const [lightbox, setLightbox] = useState(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const header = headerRef.current;
-    const cards = gridRef.current?.querySelectorAll(".solution-card");
-
-    if (!section || !header || !cards?.length) return;
+    if (!section) return;
 
     const ctx = gsap.context(() => {
-      const headerItems = header.querySelectorAll("[data-animate]");
-
       gsap.fromTo(
-        headerItems,
+        headerRef.current,
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.12,
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 70%",
+            start: "top 75%",
             once: true,
           },
         },
       );
 
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 50, scale: 0.97 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 80%",
-            once: true,
+      const cards = gridRef.current?.querySelectorAll(".gallery-item");
+      if (cards?.length) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              once: true,
+            },
           },
-        },
-      );
+        );
+      }
     }, section);
 
     return () => ctx.revert();
   }, []);
 
-  return (
-    <section
-      id="solutions"
-      ref={sectionRef}
-      className="relative w-full flex flex-col items-center px-6 py-24 lg:px-20 lg:py-32 bg-black overflow-hidden"
-    >
-      {/* Header */}
-      <div ref={headerRef}>
-        <h2
-          data-animate
-          className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center mb-14 tracking-tight"
-        >
-          {t("solutions.badge")}
-        </h2>
-      </div>
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    document.body.style.overflow = lightbox !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightbox]);
 
-      {/* Bento grid */}
-      <div
-        ref={gridRef}
-        className="w-full max-w-275 grid grid-cols-1 sm:grid-cols-3 gap-5"
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (lightbox === null) return;
+    const handler = (e) => {
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowRight") setLightbox((i) => (i + 1) % imageFiles.length);
+      if (e.key === "ArrowLeft") setLightbox((i) => (i - 1 + imageFiles.length) % imageFiles.length);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightbox]);
+
+  return (
+    <>
+      <section
+        id="solutions"
+        ref={sectionRef}
+        className="relative w-full px-6 py-24 lg:px-20 lg:py-32 bg-black overflow-hidden"
       >
-        {solutions.map((solution, index) => (
-          <SolutionCard
-            key={index}
-            image={solution.image}
-            span={solution.span}
-            title={t(`${solution.key}.title`)}
-            description={t(`${solution.key}.description`)}
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div ref={headerRef} className="mb-14 lg:mb-20">
+            <p className="text-xs font-semibold tracking-[4px] uppercase text-[#e93d59] mb-3">
+              Portfolio
+            </p>
+            <h2 className="text-[clamp(28px,5vw,44px)] font-bold text-white tracking-tight">
+              Our Gallery
+            </h2>
+            <div className="mt-4 h-px w-16 bg-gradient-to-r from-[#e93d59] to-transparent" />
+          </div>
+
+          {/* Masonry-style Grid */}
+          <div
+            ref={gridRef}
+            className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3"
+          >
+            {imageFiles.map((src, i) => (
+              <div
+                key={i}
+                onClick={() => setLightbox(i)}
+                className="gallery-item break-inside-avoid rounded-xl overflow-hidden
+                  cursor-pointer group relative"
+              >
+                <img
+                  src={src}
+                  alt={`Gallery ${i + 1}`}
+                  loading="lazy"
+                  className="w-full object-cover transition-transform duration-700 ease-out
+                    group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center
+                    opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100
+                    transition-all duration-500">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex items-center justify-center"
+          onClick={() => setLightbox(null)}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setLightbox(null)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+              flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Prev */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox((i) => (i - 1 + imageFiles.length) % imageFiles.length);
+            }}
+            className="absolute left-4 sm:left-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+              flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Image */}
+          <img
+            src={imageFiles[lightbox]}
+            alt={`Gallery ${lightbox + 1}`}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
           />
-        ))}
-      </div>
-    </section>
+
+          {/* Next */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox((i) => (i + 1) % imageFiles.length);
+            }}
+            className="absolute right-4 sm:right-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+              flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Counter */}
+          <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-sm">
+            {lightbox + 1} / {imageFiles.length}
+          </span>
+        </div>
+      )}
+    </>
   );
 }

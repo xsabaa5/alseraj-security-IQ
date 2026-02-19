@@ -70,19 +70,19 @@
     }
   },
   "faq": {
-    "title": "FAQ",
-    "q1": "What services does AL-SERAJ provide?",
-    "a1": "We provide comprehensive technology and security solutions including cybersecurity, drones, cameras, mobile-robotics and intelligent automation.",
-    "q2": "How long have we been in business?",
-    "a2": "We have been powering digital transformation with integrated technology and security solutions since 1996, bringing over 25 years of expertise to every project.",
-    "q3": "What makes your solutions unique?",
-    "a3": "Our solutions combine cutting-edge technology with proven security frameworks, offering modern UI/UX design, high-performance applications, and comprehensive digital marketing strategies.",
-    "q4": "Do you offer custom solutions?",
-    "a4": "Yes, we specialize in creating tailored solutions for each client's specific requirements, from custom software development to specialized security implementations.",
-    "q5": "What industries do you serve?",
-    "a5": "We serve a wide range of industries including government, bank, financial sector and education.",
-    "q6": "How can I get started with your services?",
-    "a6": "Getting started is easy. Contact us through our website or give us a call to schedule a consultation where we'll discuss your needs and propose the best solutions for your organization."
+    "title": "Frequently Asked Questions",
+    "q1": "What types of drones and UAVs does AL-SERAJ offer?",
+    "a1": "We supply a full range of commercial and enterprise drones from leading brands like DJI, including surveying drones, inspection UAVs, and multi-rotor platforms equipped with thermal, multispectral, and LiDAR payloads for security, surveillance, and geospatial applications.",
+    "q2": "How do your GNSS solutions improve surveying accuracy?",
+    "a2": "Our GNSS receivers and RTK systems from brands like CHCNAV and South deliver centimeter-level positioning accuracy. They support multi-constellation tracking (GPS, GLONASS, Galileo, BeiDou) for reliable performance in demanding survey, construction, and mapping environments.",
+    "q3": "What RF security and counter-drone systems do you provide?",
+    "a3": "We offer advanced radio frequency detection and counter-drone solutions that identify, track, and neutralize unauthorized UAV threats. These systems are used to protect critical infrastructure, government facilities, airports, and high-security zones.",
+    "q4": "Do you support marine surveying and hydrographic operations?",
+    "a4": "Yes, we provide professional marine surveying equipment including single and multi-beam echo sounders, unmanned surface vehicles (USVs), and GNSS-aided positioning systems for bathymetric surveys, port inspections, and underwater mapping.",
+    "q5": "What geospatial and mapping software do you offer?",
+    "a5": "We distribute industry-leading software including Pix4D for photogrammetry, Agisoft Metashape for 3D modeling, MicroSurvey for CAD processing, and UgCS for drone flight planning — covering the full workflow from data capture to deliverable outputs.",
+    "q6": "Which industries and sectors do you serve?",
+    "a6": "We serve government, defense, oil & gas, construction, agriculture, utilities, mining, maritime, and environmental sectors across the Middle East, delivering integrated security and geospatial technology solutions tailored to each industry's unique requirements."
   },
   "footer": {
     "tagline": "Powering digital transformation since 1996",

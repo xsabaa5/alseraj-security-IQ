@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Acoustic Doppler Current Profilers",
+    "slug": "acoustic-doppler-current-profilers",
+    "parent": 27
+  },
+  {
+    "name": "Bundles for Professionals ",
+    "slug": "bundles-for-professionals",
+    "parent": 0
+  },
+  {
+    "name": "CORS",
+    "slug": "cors",
+    "parent": 44
+  },
+  {
+    "name": "Data Controllers",
+    "slug": "data-controllers",
+    "parent": 44
+  },
+  {
+    "name": "Drone Accessories",
+    "slug": "drone-accessories",
+    "parent": 48
+  },
+  {
+    "name": "Drones (UAVs)",
+    "slug": "drones",
+    "parent": 0
+  },
+  {
+    "name": "Echo Sounders",
+    "slug": "echo-sounders",
+    "parent": 27
+  },
+  {
+    "name": "Electronic Theodolites",
+    "slug": "electronic-theodolites",
+    "parent": 0
+  },
+  {
+    "name": "GIS Handhelds",
+    "slug": "gis-handhelds",
+    "parent": 44
+  },
+  {
+    "name": "GNSS",
+    "slug": "gnss",
+    "parent": 0
+  },
+  {
+    "name": "GNSS Base and Rover Sets",
+    "slug": "gnss-base-and-rover-sets",
+    "parent": 44
+  },
+  {
+    "name": "Handheld cameras",
+    "slug": "handheld-cameras",
+    "parent": 66
+  },
+  {
+    "name": "Lidar scanners",
+    "slug": "lidar-scanners",
+    "parent": 66
+  },
+  {
+    "name": "Marine surveying",
+    "slug": "marine-surveying",
+    "parent": 0
+  },
+  {
+    "name": "Mobile Scanners",
+    "slug": "mobile-scanners",
+    "parent": 66
+  },
+  {
+    "name": "Mobile/Wearable LiDAR Scanners and cameras",
+    "slug": "slam-lidar",
+    "parent": 0
+  },
+  {
+    "name": "Payloads/Sensors",
+    "slug": "payloads-sensors",
+    "parent": 48
+  },
+  {
+    "name": "Prisms/Tripods/Poles/Staffs",
+    "slug": "prisms-tripods-poles-staffs",
+    "parent": 0
+  },
+  {
+    "name": "Radio Frequency Security Systems",
+    "slug": "radio-frequency-security-systems",
+    "parent": 0
+  },
+  {
+    "name": "RTK GNSS RECEIVERS",
+    "slug": "rtk-gnss-receivers",
+    "parent": 44
+  },
+  {
+    "name": "Side Scan Sonars",
+    "slug": "side-scan-sonars",
+    "parent": 27
+  },
+  {
+    "name": "Software",
+    "slug": "software",
+    "parent": 0
+  },
+  {
+    "name": "Terrestrial Laser Scanners",
+    "slug": "terrestrial-laser-scanners",
+    "parent": 66
+  },
+  {
+    "name": "Total Stations",
+    "slug": "total-stations",
+    "parent": 0
+  },
+  {
+    "name": "Trainings",
+    "slug": "trainings",
+    "parent": 0
+  },
+  {
+    "name": "Unmaned Surface Vehicles",
+    "slug": "unmaned-surface-vehicles",
+    "parent": 27
+  }
+]

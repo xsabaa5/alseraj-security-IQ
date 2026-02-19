@@ -12,6 +12,8 @@ import Services from "./pages/Services";
 import ComingSoon from "./pages/ComingSoon";
 import ContactUs from "./pages/ContactUs";
 import ServiceDetail from "./pages/ServiceDetail";
+import AllProducts from "./pages/AllProducts";
+import ProductDetail from "./pages/ProductDetail";
 import PageLoader from "./components/PageLoader";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -137,6 +139,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/products" element={<AllProducts />} />
+        <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>

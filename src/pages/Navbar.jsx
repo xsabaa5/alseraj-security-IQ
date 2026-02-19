@@ -2,8 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GiDeliveryDrone } from "react-icons/gi";
-import { HiVideoCamera } from "react-icons/hi";
-import { FaServer, FaRobot, FaShieldAlt } from "react-icons/fa";
+import { MdSensors } from "react-icons/md";
+import {
+  FaSatelliteDish,
+  FaShip,
+  FaLaptopCode,
+  FaShieldAlt,
+} from "react-icons/fa";
 
 const navLinks = [
   { key: "nav.home", hash: "home" },
@@ -13,12 +18,43 @@ const navLinks = [
   { key: "nav.contactUs", to: "/contact" },
 ];
 
-const products = [
-  { icon: GiDeliveryDrone, titleKey: "services.drone.title", descKey: "services.drone.description", slug: "drone" },
-  { icon: HiVideoCamera, titleKey: "services.cameras.title", descKey: "services.cameras.description", slug: "cameras" },
-  { icon: FaServer, titleKey: "services.it.title", descKey: "services.it.description", slug: "information-technology" },
-  { icon: FaRobot, titleKey: "services.robotics.title", descKey: "services.robotics.description", slug: "mobile-robotics" },
-  { icon: FaShieldAlt, titleKey: "services.cyber.title", descKey: "services.cyber.description", slug: "cyber-security" },
+const productCategories = [
+  {
+    icon: GiDeliveryDrone,
+    title: "Drones (UAVs)",
+    desc: "Commercial & enterprise drones",
+    slug: "drones",
+  },
+  {
+    icon: MdSensors,
+    title: "Payloads & Sensors",
+    desc: "Cameras, thermal & multispectral",
+    slug: "payloads-sensors",
+  },
+  {
+    icon: FaSatelliteDish,
+    title: "GNSS",
+    desc: "Positioning & surveying systems",
+    slug: "gnss",
+  },
+  {
+    icon: FaShip,
+    title: "Marine Surveying",
+    desc: "Echo sounders & surface vehicles",
+    slug: "marine-surveying",
+  },
+  {
+    icon: FaLaptopCode,
+    title: "Software",
+    desc: "Mapping, modeling & analysis",
+    slug: "software",
+  },
+  {
+    icon: FaShieldAlt,
+    title: "RF Security Systems",
+    desc: "Detection & counter-drone",
+    slug: "radio-frequency-security-systems",
+  },
 ];
 
 export default function NavBar() {
@@ -91,9 +127,9 @@ export default function NavBar() {
         {/* Logo */}
         <Link to="/" className="relative z-1001 flex items-center gap-2">
           <img
-            src="/logo.png"
+            src="/box-logo.png"
             alt="Al Seraj Company Logo"
-            className="h-auto w-30"
+            className="h-8 w-auto"
           />
         </Link>
 
@@ -118,7 +154,12 @@ export default function NavBar() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
 
@@ -131,10 +172,10 @@ export default function NavBar() {
                   }`}
                 >
                   <div className="w-80 rounded-xl border border-white/10 bg-black p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-                    {products.map((product) => (
+                    {productCategories.map((product) => (
                       <Link
                         key={product.slug}
-                        to={`/services/${product.slug}`}
+                        to={`/products?category=${product.slug}`}
                         onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200 hover:bg-white/8 group"
                       >
@@ -143,10 +184,10 @@ export default function NavBar() {
                         </div>
                         <div className="min-w-0">
                           <p className="text-[13px] font-medium text-white/80 group-hover:text-white transition-colors duration-200">
-                            {t(product.titleKey)}
+                            {product.title}
                           </p>
                           <p className="text-[11px] text-white/35 truncate group-hover:text-white/50 transition-colors duration-200">
-                            {t(product.descKey)}
+                            {product.desc}
                           </p>
                         </div>
                       </Link>
@@ -154,18 +195,26 @@ export default function NavBar() {
 
                     {/* View All */}
                     <div className="mt-1 border-t border-white/8 pt-1">
-                      <button
-                        onClick={() => {
-                          setDropdownOpen(false);
-                          handleNavClick({ hash: "services" });
-                        }}
-                        className="flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] text-white/40 transition-all duration-200 hover:bg-white/5 hover:text-white/70 cursor-pointer bg-transparent border-none"
+                      <Link
+                        to="/products"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] text-white/40 transition-all duration-200 hover:bg-white/5 hover:text-white/70"
                       >
                         {t("nav.viewAll")}
-                        <svg className="w-3 h-3 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        <svg
+                          className="w-3 h-3 rtl:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -179,7 +228,7 @@ export default function NavBar() {
                   {t(link.key)}
                 </button>
               </li>
-            )
+            ),
           )}
         </ul>
 
@@ -247,7 +296,9 @@ export default function NavBar() {
               <button
                 onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
                 className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 cursor-pointer bg-transparent border-none flex items-center gap-2 ${
-                  menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                  menuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-5 opacity-0"
                 }`}
                 style={{
                   transitionDelay: menuOpen ? `${0.1 + i * 0.05}s` : "0s",
@@ -260,33 +311,44 @@ export default function NavBar() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
 
               {/* Mobile Products Expandable */}
               <div
                 className={`flex flex-col items-center overflow-hidden transition-all duration-400 ${
-                  mobileProductsOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  mobileProductsOpen
+                    ? "max-h-96 opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
-                {products.map((product, j) => (
+                {productCategories.map((product, j) => (
                   <Link
                     key={product.slug}
-                    to={`/services/${product.slug}`}
+                    to={`/products?category=${product.slug}`}
                     onClick={() => setMenuOpen(false)}
                     className={`flex items-center gap-3 px-8 py-2.5 transition-all duration-300 hover:text-white/50 ${
-                      mobileProductsOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+                      mobileProductsOpen
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-3 opacity-0"
                     }`}
                     style={{
-                      transitionDelay: mobileProductsOpen ? `${j * 0.05}s` : "0s",
+                      transitionDelay: mobileProductsOpen
+                        ? `${j * 0.05}s`
+                        : "0s",
                     }}
                   >
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5">
                       <product.icon className="text-sm text-white/50" />
                     </div>
                     <span className="text-[clamp(14px,3.5vw,18px)] font-extralight text-white/70">
-                      {t(product.titleKey)}
+                      {product.title}
                     </span>
                   </Link>
                 ))}
@@ -297,7 +359,9 @@ export default function NavBar() {
               key={link.key}
               onClick={() => handleNavClick(link)}
               className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 cursor-pointer bg-transparent border-none ${
-                menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                menuOpen
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-5 opacity-0"
               }`}
               style={{
                 transitionDelay: menuOpen ? `${0.1 + i * 0.05}s` : "0s",
@@ -305,7 +369,7 @@ export default function NavBar() {
             >
               {t(link.key)}
             </button>
-          )
+          ),
         )}
 
         {/* Divider */}

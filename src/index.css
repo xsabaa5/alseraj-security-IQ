@@ -148,3 +148,223 @@ model-viewer {
 .done {
   text-decoration: line-through;
 }
+
+/* Product detail content styles */
+.product-content h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: white;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-content h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: white;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-content p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.product-content ul,
+.product-content ol {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.product-content ul {
+  list-style-type: disc;
+}
+
+.product-content ol {
+  list-style-type: decimal;
+}
+
+.product-content li {
+  margin-bottom: 0.4rem;
+}
+
+.product-content strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.product-content a {
+  color: #e93d59;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.product-content a:hover {
+  color: #f45d75;
+}
+
+.product-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.product-content th,
+.product-content td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.product-content th {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.product-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.product-content video {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+/* Dark theme for product content */
+.product-content--dark h2 {
+  color: #60a5fa;
+  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-content--dark h3 {
+  color: #60a5fa;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-content--dark h4 {
+  color: #93c5fd;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-content--dark p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.product-content--dark ul,
+.product-content--dark ol {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.product-content--dark ul {
+  list-style-type: disc;
+}
+
+.product-content--dark ol {
+  list-style-type: decimal;
+}
+
+.product-content--dark li {
+  margin-bottom: 0.4rem;
+}
+
+.product-content--dark strong {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.product-content--dark a {
+  color: #60a5fa;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.product-content--dark a:hover {
+  color: #93c5fd;
+}
+
+.product-content--dark table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.product-content--dark th,
+.product-content--dark td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.product-content--dark th {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.product-content--dark img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+.product-content--dark video {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+/* Collapse empty elements */
+.product-content--dark p:empty,
+.product-content--dark h2:empty,
+.product-content--dark h3:empty,
+.product-content--dark h4:empty,
+.product-content--dark span:empty,
+.product-content--dark li:empty {
+  display: none;
+}
+
+.product-content--dark p br:only-child {
+  display: none;
+}

@@ -1,157 +1,110 @@
-import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { GiDeliveryDrone } from "react-icons/gi";
-import { HiVideoCamera } from "react-icons/hi";
-import { FaServer, FaRobot, FaShieldAlt } from "react-icons/fa";
-import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const rgba = (hex, a) => {
-  const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16));
-  return `rgba(${r},${g},${b},${a})`;
-};
-
-const services = [
+const products = [
   {
-    icon: GiDeliveryDrone,
-    key: "services.drone",
-    slug: "drone",
-    accent: "#ffffff",
-    image: "/drone .jpeg",
+    slug: "dji-mavic-3-thermal-advanced-mavic-3ta",
+    title: "DJI Mavic 3 Thermal Advanced / Mavic 3TA",
+    image: "/products/dji-mavic-3-thermal-advanced-mavic-3ta.jpg",
   },
   {
-    icon: HiVideoCamera,
-    key: "services.cameras",
-    slug: "cameras",
-    accent: "#e93d59",
-    image: "/cctv cmaera.jpeg",
-    imagePosition: "center 20%",
+    slug: "dji-matrice-400",
+    title: "DJI Matrice 400",
+    image: "/products/dji-matrice-400.jpg",
   },
   {
-    icon: FaServer,
-    key: "services.it",
-    slug: "information-technology",
-    accent: "#3b82f6",
-    image: "/IT.jpeg",
+    slug: "dji-matrice-4td-for-dock-3",
+    title: "DJI Matrice 4TD for Dock 3",
+    image: "/products/dji-matrice-4td-for-dock-3.webp",
   },
   {
-    icon: FaRobot,
-    key: "services.robotics",
-    slug: "mobile-robotics",
-    accent: "#f59e0b",
-    image: "/woopicx.com-3eaf022a-66a4-4fb8-8ba0-1d0b9e2efaf7.png.png",
+    slug: "dji-zenmuse-l3",
+    title: "DJI Zenmuse L3 | DJI L3 Lidar",
+    image: "/products/dji-zenmuse-l3.png",
   },
   {
-    icon: FaShieldAlt,
-    key: "services.cyber",
-    slug: "cyber-security",
-    accent: "#3b82f6",
-    image: "/cyber .jpeg",
+    slug: "dji-dock-3",
+    title: "DJI Dock 3",
+    image: "/products/dji-dock-3.jpg",
+  },
+  {
+    slug: "c120-tethered-cleaning-system-cleaning",
+    title: "C120 Tethered Cleaning System Cleaning",
+    image: "/products/c120-tethered-cleaning-system-cleaning.webp",
+  },
+  {
+    slug: "sniffer4d-nano2-gas-detection-system",
+    title: "Sniffer4D Nano2 Gas Detection System",
+    image: "/products/sniffer4d-nano2-gas-detection-system.jpg",
+  },
+  {
+    slug: "dji-matrice-4d-for-dock-3",
+    title: "DJI Matrice 4D for Dock 3",
+    image: "/products/dji-matrice-4d-for-dock-3.webp",
+  },
+  {
+    slug: "dji-mavic-3-multispectral",
+    title: "DJI Mavic 3 Multispectral",
+    image: "/products/dji-mavic-3-multispectral.jpg",
+  },
+  {
+    slug: "dji-matrice-350-rtk-thermal-combo",
+    title: "DJI Matrice 350 RTK Thermal Combo",
+    image: "/products/dji-matrice-350-rtk-thermal-combo.jpg",
+  },
+  {
+    slug: "dji-mavic-3-enterprise",
+    title: "DJI Mavic 3 Enterprise",
+    image: "/products/dji-mavic-3-enterprise.jpg",
+  },
+  {
+    slug: "dji-matrice-30-t-dji-m30t",
+    title: "DJI Matrice 30 T | DJI M30T",
+    image: "/products/dji-matrice-30-t-dji-m30t.png",
+  },
+  {
+    slug: "dji-h20t-thermal-camera",
+    title: "DJI Zenmuse H20T Thermal Camera",
+    image: "/products/dji-h20t-thermal-camera.webp",
+  },
+  {
+    slug: "dji-mavic-3-enterprise-survey-kit",
+    title: "DJI Mavic 3 Enterprise Survey Kit",
+    image: "/products/dji-mavic-3-enterprise-survey-kit.png",
+  },
+  {
+    slug: "dji-flycart-100",
+    title: "DJI FlyCart 100",
+    image: "/products/dji-flycart-100.jpg",
   },
 ];
 
-/* eslint-disable no-unused-vars */
-function ServiceCard({
-  icon: Icon,
-  title,
-  slug,
-  description,
-  accent,
-  featured,
-  image,
-  imagePosition,
-}) {
-  /* eslint-enable no-unused-vars */
+function ProductCard({ title, slug, image }) {
   return (
     <Link
-      to={`/services/${slug}`}
-      className={`service-card group relative flex flex-col h-full rounded-3xl overflow-hidden
+      to={`/products/${slug}`}
+      className="product-card group flex flex-col items-center rounded-2xl overflow-hidden
         cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-        hover:-translate-y-1.5
-        ${featured ? "min-h-80 lg:min-h-95" : "min-h-70 lg:min-h-80"}
-        border border-white/8 hover:border-white/15`}
+        hover:-translate-y-1.5 bg-white hover:shadow-lg"
     >
-      {/* Background image — zooms on hover */}
-      <img
-        src={image}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover
-          transition-transform duration-700 ease-out
-          group-hover:scale-[1.05]"
-        style={imagePosition ? { objectPosition: imagePosition } : undefined}
-      />
-
-      {/* Gradient overlay — solid at bottom for text readability */}
-      <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />
-
-      {/* Accent-tinted overlay on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100
-          transition-opacity duration-700 pointer-events-none"
-        style={{
-          background: `linear-gradient(to top, ${rgba(accent, 0.15)}, transparent 50%)`,
-        }}
-      />
-
-      {/* Hover shadow glow */}
-      <div
-        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100
-          transition-opacity duration-500 pointer-events-none"
-        style={{
-          boxShadow: `0 16px 50px -12px ${rgba(accent, 0.3)}`,
-        }}
-      />
-
-      {/* Content */}
-      <div
-        className={`relative z-10 flex flex-col h-full
-          ${featured ? "p-8 lg:p-10" : "p-6 lg:p-8"}`}
-      >
-        {/* Arrow — top right */}
-        <div className="self-end">
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center
-              bg-black/30 backdrop-blur-md border border-white/10
-              group-hover:bg-white/10 group-hover:border-white/20
-              transition-all duration-500"
-          >
-            <ArrowUpRight
-              className="w-4 h-4 text-white/60 group-hover:text-white
-                transition-colors duration-500"
-              strokeWidth={2}
-            />
-          </div>
-        </div>
-
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* Title + Description — anchored to bottom */}
-        <div>
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center
-              backdrop-blur-md mb-4 transition-all duration-500"
-            style={{
-              backgroundColor: rgba(accent, 0.2),
-              border: `1px solid ${rgba(accent, 0.3)}`,
-            }}
-          >
-            <Icon className="text-lg" style={{ color: accent }} />
-          </div>
-
-          <h3
-            className={`text-white font-semibold tracking-[-0.02em] mb-1.5
-              ${featured ? "text-[clamp(1.3rem,2.5vw,1.6rem)]" : "text-[clamp(1.1rem,2vw,1.3rem)]"}`}
-          >
-            {title}
-          </h3>
-          <p className="text-white/50 text-[clamp(0.8rem,1.5vw,0.88rem)] leading-[1.6]">
-            {description}
-          </p>
-        </div>
+      <div className="w-full aspect-square flex items-center justify-center p-6">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="max-w-full max-h-full object-contain
+            transition-transform duration-700 ease-out
+            group-hover:scale-[1.05]"
+        />
+      </div>
+      <div className="w-full px-4 pb-5 pt-1 text-center">
+        <h3 className="text-[#1d1d1f] text-sm font-medium leading-snug">
+          {title}
+        </h3>
       </div>
     </Link>
   );
@@ -166,7 +119,7 @@ export default function Services() {
   useEffect(() => {
     const section = sectionRef.current;
     const header = headerRef.current;
-    const cards = gridRef.current?.querySelectorAll(".service-card");
+    const cards = gridRef.current?.querySelectorAll(".product-card");
 
     if (!section || !header || !cards?.length) return;
 
@@ -230,15 +183,12 @@ export default function Services() {
         ref={headerRef}
         className="relative z-10 text-center mb-14 lg:mb-20 max-w-5xl mx-auto"
       >
-        {/* Headline */}
         <h2
           data-animate
-          className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center  tracking-tight"
+          className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center tracking-tight"
         >
           {t("services.headline")}
         </h2>
-
-        {/* Subtitle */}
         <p
           data-animate
           className="text-[#555] text-[clamp(1rem,2vw,1.5rem)] leading-relaxed"
@@ -247,36 +197,33 @@ export default function Services() {
         </p>
       </div>
 
-      {/* Bento Grid */}
+      {/* Product Grid */}
       <div
         ref={gridRef}
         className="relative z-10 w-full max-w-275
-          grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3"
+          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
       >
-        {services.map((service, index) => (
-          <div
-            key={service.slug}
-            className={
-              index < 2
-                ? "lg:col-span-3"
-                : index === 4
-                  ? "md:col-span-2 lg:col-span-2"
-                  : "lg:col-span-2"
-            }
-          >
-            <ServiceCard
-              icon={service.icon}
-              title={t(`${service.key}.title`)}
-              slug={service.slug}
-              description={t(`${service.key}.description`)}
-              accent={service.accent}
-              featured={index < 2}
-              image={service.image}
-              imagePosition={service.imagePosition}
-            />
-          </div>
+        {products.map((product) => (
+          <ProductCard
+            key={product.slug}
+            slug={product.slug}
+            title={product.title}
+            image={product.image}
+          />
         ))}
       </div>
+
+      {/* More Products Button */}
+      <Link
+        to="/products"
+        data-animate
+        className="relative z-10 mt-12 inline-flex items-center gap-2 rounded-full border border-white/15
+          bg-white/5 px-8 py-3.5 text-sm font-medium text-white/80
+          transition-all duration-500 hover:bg-white/10 hover:border-white/25 hover:text-white group"
+      >
+        More Products
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </Link>
     </section>
   );
 }
