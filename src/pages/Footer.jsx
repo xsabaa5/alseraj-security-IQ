@@ -12,11 +12,12 @@ import {
 } from "react-icons/fa";
 
 const productLinks = [
-  { label: "Drones (UAVs)", to: "/products?category=drones" },
-  { label: "Payloads & Sensors", to: "/products?category=payloads-sensors" },
-  { label: "GNSS", to: "/products?category=gnss" },
-  { label: "Marine Surveying", to: "/products?category=marine-surveying" },
-  { label: "Software", to: "/products?category=software" },
+  { labelKey: "navProducts.drones", to: "/products?category=drones" },
+  { labelKey: "navProducts.cyber", to: "/cyber-security" },
+  { labelKey: "navProducts.xray", to: "/products?category=security-inspection" },
+  { labelKey: "navProducts.fixedWing", to: "/products?category=fixed-wing" },
+  { labelKey: "navProducts.thermalCamera", to: "/products?category=thermal-cameras" },
+  { labelKey: "navProducts.crimeScene", to: "/products?category=crime-scene-investigation" },
 ];
 
 const companyLinks = [
@@ -102,16 +103,16 @@ export default function Footer() {
             {/* Products */}
             <div>
               <h3 className="text-[#e93d59] text-sm font-medium mb-5">
-                Products
+                {t("products.footerTitle")}
               </h3>
               <ul className="space-y-3">
-                {productLinks.map(({ label, to }) => (
-                  <li key={label}>
+                {productLinks.map(({ labelKey, to }) => (
+                  <li key={labelKey}>
                     <Link
                       to={to}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
                     >
-                      {label}
+                      {t(labelKey)}
                     </Link>
                   </li>
                 ))}

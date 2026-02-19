@@ -221,8 +221,8 @@ export default function Services() {
           bg-white/5 px-8 py-3.5 text-sm font-medium text-white/80
           transition-all duration-500 hover:bg-white/10 hover:border-white/25 hover:text-white group"
       >
-        More Products
-        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+        {t("products.moreProducts")}
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
       </Link>
     </section>
   );

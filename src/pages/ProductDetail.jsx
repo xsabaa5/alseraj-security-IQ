@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { X, ZoomIn } from "lucide-react";
 import gsap from "gsap";
@@ -62,7 +63,7 @@ function cleanContentHtml(html) {
 }
 
 // Inner-zoom component (like WooCommerce / gnss.ae)
-function ProductImageZoom({ src, alt, onOpenLightbox }) {
+function ProductImageZoom({ src, alt, onOpenLightbox, zoomHint }) {
   const containerRef = useRef(null);
   const [zooming, setZooming] = useState(false);
   const [bgPos, setBgPos] = useState("center");
@@ -109,17 +110,18 @@ function ProductImageZoom({ src, alt, onOpenLightbox }) {
       />
 
       {/* Zoom hint icon (bottom-right, fades out on hover) */}
-      <div className={`absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full
+      <div className={`absolute bottom-4 end-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full
         bg-black/60 backdrop-blur-sm transition-all duration-300
         ${zooming ? "opacity-0 scale-90" : "opacity-70 scale-100"}`}>
         <ZoomIn className="w-3.5 h-3.5 text-white" />
-        <span className="text-[11px] text-white font-medium">Hover to zoom</span>
+        <span className="text-[11px] text-white font-medium">{zoomHint}</span>
       </div>
     </div>
   );
 }
 
 export default function ProductDetail() {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -205,8 +207,8 @@ export default function ProductDetail() {
             to="/products"
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-6 py-2.5 text-sm text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 group"
           >
-            <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
-            <span>All Products</span>
+            <FaArrowLeft className="text-sm group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1 transition-transform duration-300" />
+            <span>{t("products.allProducts")}</span>
           </Link>
 
           {category && (
@@ -215,7 +217,7 @@ export default function ProductDetail() {
                 to="/products"
                 className="hover:text-white/70 transition-colors"
               >
-                Products
+                {t("products.footerTitle")}
               </Link>
               <span>/</span>
               <span>{category.name}</span>
@@ -240,6 +242,7 @@ export default function ProductDetail() {
               src={imageSrc}
               alt={product.title}
               onOpenLightbox={() => setLightboxOpen(true)}
+              zoomHint={t("products.hoverToZoom")}
             />
           </div>
 
@@ -271,7 +274,7 @@ export default function ProductDetail() {
             {category && (
               <div data-animate className="flex items-center gap-3 mb-8">
                 <span className="text-xs font-medium tracking-wide uppercase text-white/30">
-                  Category
+                  {t("products.category")}
                 </span>
                 <span className="px-3 py-1 rounded-full border border-white/15 bg-white/5 text-sm text-white/70">
                   {category.name}
@@ -286,8 +289,8 @@ export default function ProductDetail() {
                 rounded-full text-white text-sm font-medium tracking-wide
                 transition-all duration-300 group"
             >
-              <span>Contact Us</span>
-              <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-300" />
+              <span>{t("products.contactUs")}</span>
+              <FaArrowRight className="text-xs group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         </div>
@@ -297,7 +300,7 @@ export default function ProductDetail() {
       {hasContent && (
         <div className="px-6 sm:px-10 lg:px-16 pb-20 max-w-7xl mx-auto">
           <h2 className="text-[clamp(24px,4vw,36px)] font-bold text-white mb-10 tracking-tight border-b border-white/10 pb-6">
-            Product Details
+            {t("products.productDetails")}
           </h2>
           <div
             ref={contentRef}
@@ -310,11 +313,10 @@ export default function ProductDetail() {
       {/* CTA */}
       <div className="px-6 sm:px-10 lg:px-16 pb-20 max-w-3xl mx-auto text-center">
         <h3 className="text-[clamp(1.3rem,3vw,2rem)] font-medium mb-4">
-          Interested in {product.title}?
+          {t("products.interestedIn", { title: product.title })}
         </h3>
         <p className="text-white/40 text-[clamp(0.85rem,2vw,1rem)] mb-8">
-          Get in touch with our team to discuss how we can help your
-          organization.
+          {t("products.ctaText")}
         </p>
         <Link
           to="/contact"
@@ -322,8 +324,8 @@ export default function ProductDetail() {
             rounded-full text-white text-[clamp(0.9rem,2vw,1.1rem)] font-medium tracking-wide
             transition-all duration-300 group"
         >
-          <span>Contact Us</span>
-          <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
+          <span>{t("products.contactUs")}</span>
+          <FaArrowRight className="text-sm group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
 
@@ -335,7 +337,7 @@ export default function ProductDetail() {
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+            className="absolute top-6 end-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
               flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
           >
             <X className="w-5 h-5" />

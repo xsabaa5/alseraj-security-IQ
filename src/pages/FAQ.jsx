@@ -18,7 +18,7 @@ function FAQItem({ question, answer, isOpen, onClick }) {
         onClick={onClick}
         className="w-full flex items-center justify-between px-6 py-5 cursor-pointer"
       >
-        <span className="text-white text-left text-[clamp(14px,2vw,17px)] font-medium pr-4">
+        <span className="text-white text-start text-[clamp(14px,2vw,17px)] font-medium pe-4">
           {question}
         </span>
         <div

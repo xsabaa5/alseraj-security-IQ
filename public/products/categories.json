@@ -128,5 +128,25 @@
     "name": "Unmaned Surface Vehicles",
     "slug": "unmaned-surface-vehicles",
     "parent": 27
+  },
+  {
+    "name": "Security Inspection",
+    "slug": "security-inspection",
+    "parent": 0
+  },
+  {
+    "name": "Crime Scene Investigation",
+    "slug": "crime-scene-investigation",
+    "parent": 0
+  },
+  {
+    "name": "Thermal Cameras",
+    "slug": "thermal-cameras",
+    "parent": 0
+  },
+  {
+    "name": "Fixed Wing",
+    "slug": "fixed-wing",
+    "parent": 0
   }
 ]

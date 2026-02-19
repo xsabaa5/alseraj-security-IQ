@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, ChevronDown, Grid3X3, Search } from "lucide-react";
 import gsap from "gsap";
 
@@ -13,6 +14,7 @@ const PARENT_MAP = {
 const PER_PAGE = 40;
 
 export default function AllProducts() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchParams] = useSearchParams();
@@ -24,6 +26,15 @@ export default function AllProducts() {
   const [expandedParent, setExpandedParent] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const gridRef = useRef(null);
+
+  // Sync filter state when URL search params change (e.g. navbar links)
+  useEffect(() => {
+    const cat = searchParams.get("category") || "all";
+    const brand = searchParams.get("brand") || "";
+    setActiveFilter(cat);
+    setActiveBrand(brand);
+    setCurrentPage(1);
+  }, [searchParams]);
 
   useEffect(() => {
     Promise.all([
@@ -177,13 +188,13 @@ export default function AllProducts() {
             <h1 className="text-[clamp(28px,5vw,42px)] font-bold text-white tracking-tight">
               {activeBrand
                 ? products.find((p) => p.brands?.some((b) => b.slug === activeBrand))
-                    ?.brands?.find((b) => b.slug === activeBrand)?.name || "All Products"
-                : "All Products"}
+                    ?.brands?.find((b) => b.slug === activeBrand)?.name || t("products.pageTitle")
+                : t("products.pageTitle")}
             </h1>
             <div className="flex items-center gap-2 mt-1">
               <p className="text-white/40 text-sm">
-                {filtered.length} product{filtered.length !== 1 ? "s" : ""}
-                {activeFilter !== "all" && " in this category"}
+                {t("products.productCount", { count: filtered.length })}
+                {activeFilter !== "all" && ` ${t("products.inCategory")}`}
               </p>
               {activeBrand && (
                 <button
@@ -192,7 +203,7 @@ export default function AllProducts() {
                     bg-[#e93d59]/15 text-[#e93d59] border border-[#e93d59]/20
                     hover:bg-[#e93d59]/25 transition-colors cursor-pointer"
                 >
-                  Brand filter
+                  {t("products.brandFilter")}
                   <span className="text-[10px]">✕</span>
                 </button>
               )}
@@ -201,7 +212,7 @@ export default function AllProducts() {
 
           {/* Search */}
           <div className="relative w-full sm:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
+            <Search className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
@@ -209,8 +220,8 @@ export default function AllProducts() {
                 setSearchQuery(e.target.value);
                 setCurrentPage(1);
               }}
-              placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/10 bg-white/5
+              placeholder={t("products.searchPlaceholder")}
+              className="w-full ps-10 pe-4 py-2.5 rounded-xl border border-white/10 bg-white/5
                 text-sm text-white placeholder:text-white/30
                 outline-none transition-all duration-300
                 focus:border-white/25 focus:bg-white/8"
@@ -233,7 +244,7 @@ export default function AllProducts() {
                 }`}
             >
               <Grid3X3 className="w-3.5 h-3.5" />
-              All
+              {t("products.all")}
               <span className={`text-[11px] px-1.5 py-0.5 rounded-full ${
                 activeFilter === "all" ? "bg-white/20" : "bg-white/8"
               }`}>
@@ -342,7 +353,7 @@ export default function AllProducts() {
                   {product.title}
                 </h3>
                 <span className="inline-block bg-[#d9534f] text-white text-xs font-medium px-5 py-2 rounded hover:bg-[#c9302c] transition-colors">
-                  Read more
+                  {t("products.readMore")}
                 </span>
               </Link>
             </div>
@@ -357,7 +368,7 @@ export default function AllProducts() {
               disabled={currentPage === 1}
               className="w-9 h-9 flex items-center justify-center rounded border border-white/20 text-white/50 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer bg-transparent"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
             </button>
 
             {getPageNumbers().map((page, i) =>
@@ -390,7 +401,7 @@ export default function AllProducts() {
               disabled={currentPage === totalPages}
               className="w-9 h-9 flex items-center justify-center rounded border border-white/20 text-white/50 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer bg-transparent"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 rtl:rotate-180" />
             </button>
           </div>
         )}

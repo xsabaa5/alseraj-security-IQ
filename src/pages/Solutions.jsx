@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -8,6 +9,7 @@ const imageFiles = Object.values(
 );
 
 export default function Gallery() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const gridRef = useRef(null);
@@ -88,10 +90,10 @@ export default function Gallery() {
           {/* Header */}
           <div ref={headerRef} className="mb-14 lg:mb-20">
             <p className="text-xs font-semibold tracking-[4px] uppercase text-[#e93d59] mb-3">
-              Portfolio
+              {t("gallery.badge")}
             </p>
             <h2 className="text-[clamp(28px,5vw,44px)] font-bold text-white tracking-tight">
-              Our Gallery
+              {t("gallery.title")}
             </h2>
             <div className="mt-4 h-px w-16 bg-gradient-to-r from-[#e93d59] to-transparent" />
           </div>
@@ -140,7 +142,7 @@ export default function Gallery() {
           {/* Close */}
           <button
             onClick={() => setLightbox(null)}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+            className="absolute top-6 end-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
               flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
           >
             <X className="w-5 h-5" />
@@ -152,10 +154,10 @@ export default function Gallery() {
               e.stopPropagation();
               setLightbox((i) => (i - 1 + imageFiles.length) % imageFiles.length);
             }}
-            className="absolute left-4 sm:left-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+            className="absolute start-4 sm:start-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
               flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-5 h-5 rtl:rotate-180" />
           </button>
 
           {/* Image */}
@@ -172,10 +174,10 @@ export default function Gallery() {
               e.stopPropagation();
               setLightbox((i) => (i + 1) % imageFiles.length);
             }}
-            className="absolute right-4 sm:right-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+            className="absolute end-4 sm:end-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
               flex items-center justify-center text-white transition-colors cursor-pointer border-none z-10"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-5 h-5 rtl:rotate-180" />
           </button>
 
           {/* Counter */}

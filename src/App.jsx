@@ -14,6 +14,8 @@ import ContactUs from "./pages/ContactUs";
 import ServiceDetail from "./pages/ServiceDetail";
 import AllProducts from "./pages/AllProducts";
 import ProductDetail from "./pages/ProductDetail";
+import CyberSecurity from "./pages/CyberSecurity";
+import ThermalCamera from "./pages/ThermalCamera";
 import PageLoader from "./components/PageLoader";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -122,13 +124,13 @@ function App() {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   // Show loader on every route change, hide when assets are ready
   useEffect(() => {
     setPageLoading(true);
     waitForAssets().then(() => setPageLoading(false));
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
@@ -139,6 +141,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/cyber-security" element={<CyberSecurity />} />
+        <Route path="/thermal-camera" element={<ThermalCamera />} />
         <Route path="/products" element={<AllProducts />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/coming-soon" element={<ComingSoon />} />

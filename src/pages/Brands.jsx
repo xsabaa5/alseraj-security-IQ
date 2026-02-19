@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -21,9 +22,11 @@ const brands = [
   { name: "Share", slug: "share", logo: "/brands/share.png" },
   { name: "Soarability", slug: "soarability", logo: "/brands/soarability.png" },
   { name: "CHCNAV", slug: "chcnav", logo: "/brands/chcnav.webp" },
+  { name: "Hikvision", slug: "hikvision", logo: "/brands/hikvision.png" },
 ];
 
 export default function Brands() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const gridRef = useRef(null);
@@ -86,10 +89,10 @@ export default function Brands() {
         {/* Header */}
         <div ref={titleRef} className="mb-14 lg:mb-20">
           <p className="text-xs font-semibold tracking-[4px] uppercase text-[#e93d59] mb-3">
-            Trusted Partners
+            {t("brands.badge")}
           </p>
           <h2 className="text-[clamp(28px,5vw,44px)] font-bold text-white tracking-tight">
-            Our Brands
+            {t("brands.title")}
           </h2>
           <div className="mt-4 h-px w-16 bg-gradient-to-r from-[#e93d59] to-transparent" />
         </div>

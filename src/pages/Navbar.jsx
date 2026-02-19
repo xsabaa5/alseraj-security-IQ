@@ -2,13 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GiDeliveryDrone } from "react-icons/gi";
-import { MdSensors } from "react-icons/md";
 import {
-  FaSatelliteDish,
-  FaShip,
-  FaLaptopCode,
   FaShieldAlt,
+  FaPlane,
+  FaCamera,
+  FaFingerprint,
 } from "react-icons/fa";
+import { ScanSearch } from "lucide-react";
 
 const navLinks = [
   { key: "nav.home", hash: "home" },
@@ -21,39 +21,39 @@ const navLinks = [
 const productCategories = [
   {
     icon: GiDeliveryDrone,
-    title: "Drones (UAVs)",
-    desc: "Commercial & enterprise drones",
-    slug: "drones",
-  },
-  {
-    icon: MdSensors,
-    title: "Payloads & Sensors",
-    desc: "Cameras, thermal & multispectral",
-    slug: "payloads-sensors",
-  },
-  {
-    icon: FaSatelliteDish,
-    title: "GNSS",
-    desc: "Positioning & surveying systems",
-    slug: "gnss",
-  },
-  {
-    icon: FaShip,
-    title: "Marine Surveying",
-    desc: "Echo sounders & surface vehicles",
-    slug: "marine-surveying",
-  },
-  {
-    icon: FaLaptopCode,
-    title: "Software",
-    desc: "Mapping, modeling & analysis",
-    slug: "software",
+    titleKey: "navProducts.drones",
+    descKey: "navProducts.dronesDesc",
+    to: "/products?category=drones",
   },
   {
     icon: FaShieldAlt,
-    title: "RF Security Systems",
-    desc: "Detection & counter-drone",
-    slug: "radio-frequency-security-systems",
+    titleKey: "navProducts.cyber",
+    descKey: "navProducts.cyberDesc",
+    to: "/cyber-security",
+  },
+  {
+    icon: ScanSearch,
+    titleKey: "navProducts.xray",
+    descKey: "navProducts.xrayDesc",
+    to: "/products?category=security-inspection",
+  },
+  {
+    icon: FaPlane,
+    titleKey: "navProducts.fixedWing",
+    descKey: "navProducts.fixedWingDesc",
+    to: "/products?category=fixed-wing",
+  },
+  {
+    icon: FaCamera,
+    titleKey: "navProducts.thermalCamera",
+    descKey: "navProducts.thermalCameraDesc",
+    to: "/products?category=thermal-cameras",
+  },
+  {
+    icon: FaFingerprint,
+    titleKey: "navProducts.crimeScene",
+    descKey: "navProducts.crimeSceneDesc",
+    to: "/products?category=crime-scene-investigation",
   },
 ];
 
@@ -174,8 +174,8 @@ export default function NavBar() {
                   <div className="w-80 rounded-xl border border-white/10 bg-black p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                     {productCategories.map((product) => (
                       <Link
-                        key={product.slug}
-                        to={`/products?category=${product.slug}`}
+                        key={product.titleKey}
+                        to={product.to}
                         onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200 hover:bg-white/8 group"
                       >
@@ -184,10 +184,10 @@ export default function NavBar() {
                         </div>
                         <div className="min-w-0">
                           <p className="text-[13px] font-medium text-white/80 group-hover:text-white transition-colors duration-200">
-                            {product.title}
+                            {t(product.titleKey)}
                           </p>
                           <p className="text-[11px] text-white/35 truncate group-hover:text-white/50 transition-colors duration-200">
-                            {product.desc}
+                            {t(product.descKey)}
                           </p>
                         </div>
                       </Link>
@@ -330,8 +330,8 @@ export default function NavBar() {
               >
                 {productCategories.map((product, j) => (
                   <Link
-                    key={product.slug}
-                    to={`/products?category=${product.slug}`}
+                    key={product.titleKey}
+                    to={product.to}
                     onClick={() => setMenuOpen(false)}
                     className={`flex items-center gap-3 px-8 py-2.5 transition-all duration-300 hover:text-white/50 ${
                       mobileProductsOpen
@@ -348,7 +348,7 @@ export default function NavBar() {
                       <product.icon className="text-sm text-white/50" />
                     </div>
                     <span className="text-[clamp(14px,3.5vw,18px)] font-extralight text-white/70">
-                      {product.title}
+                      {t(product.titleKey)}
                     </span>
                   </Link>
                 ))}
