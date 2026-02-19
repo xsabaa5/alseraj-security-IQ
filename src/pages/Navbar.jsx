@@ -14,7 +14,6 @@ const navLinks = [
   { key: "nav.home", hash: "home" },
   { key: "nav.about", hash: "about" },
   { key: "nav.services", hash: "services", hasDropdown: true },
-  { key: "nav.solution", hash: "solutions" },
   { key: "nav.contactUs", to: "/contact" },
 ];
 
