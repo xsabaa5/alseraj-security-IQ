@@ -49,6 +49,7 @@ export default function ContactUs() {
       icon: FaEnvelope,
       title: t("contact.email"),
       lines: ["info@alseraj.ae"],
+      href: "mailto:info@alseraj.ae",
     },
     {
       icon: FaMapMarkerAlt,
