@@ -159,6 +159,9 @@
     "subject": "Subject",
     "yourMessage": "Your Message",
     "send": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Your message has been sent successfully! We'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again later.",
     "connectWithUs": "Connect with us"
   },
   "comingSoon": {

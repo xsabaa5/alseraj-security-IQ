@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 import {
   FaArrowLeft,
   FaWhatsapp,
@@ -36,6 +38,7 @@ export default function ContactUs() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const { t } = useTranslation();
 
   const contactInfo = [
@@ -65,8 +68,21 @@ export default function ContactUs() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("sending");
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        ...form,
+        createdAt: serverTimestamp(),
+      });
+      setStatus("success");
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   return (
@@ -235,12 +251,25 @@ export default function ContactUs() {
           />
           <button
             type="submit"
+            disabled={status === "sending"}
             className="w-full py-4 rounded-lg bg-[#e93d59] hover:bg-[#d6324d]
               text-white text-lg font-medium tracking-wide
-              transition-all duration-300 cursor-pointer"
+              transition-all duration-300 cursor-pointer
+              disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {t("contact.send")}
+            {status === "sending" ? t("contact.sending") : t("contact.send")}
           </button>
+
+          {status === "success" && (
+            <p className="text-center text-green-400 text-sm mt-3">
+              {t("contact.successMessage")}
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-center text-red-400 text-sm mt-3">
+              {t("contact.errorMessage")}
+            </p>
+          )}
         </form>
       </div>
 
