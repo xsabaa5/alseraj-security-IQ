@@ -181,20 +181,21 @@ export default function Services() {
       {/* Header */}
       <div
         ref={headerRef}
-        className="relative z-10 text-center mb-14 lg:mb-20 max-w-5xl mx-auto"
+        className="relative z-10 mb-14 lg:mb-20 w-full max-w-275"
       >
-        <h2
-          data-animate
-          className="text-[clamp(28px,5vw,48px)] font-bold text-white text-center tracking-tight"
-        >
-          {t("services.headline")}
-        </h2>
         <p
           data-animate
-          className="text-[#555] text-[clamp(1rem,2vw,1.5rem)] leading-relaxed"
+          className="text-xs font-semibold tracking-[4px] uppercase text-[#e93d59] mb-3"
         >
           {t("services.subtitle")}
         </p>
+        <h2
+          data-animate
+          className="text-[clamp(28px,5vw,44px)] font-bold text-white tracking-tight"
+        >
+          {t("services.headline")}
+        </h2>
+        <div data-animate className="mt-4 h-px w-16 bg-gradient-to-r from-[#e93d59] to-transparent" />
       </div>
 
       {/* Product Grid */}

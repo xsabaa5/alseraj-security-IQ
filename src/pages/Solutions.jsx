@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const imageFiles = Object.values(
-  import.meta.glob("../assets/images/*.JPG", { eager: true, query: "?url", import: "default" }),
+  import.meta.glob("../assets/images/*.{JPG,jpeg,jpg,png}", { eager: true, query: "?url", import: "default" }),
 );
 
 export default function Gallery() {
@@ -98,23 +98,24 @@ export default function Gallery() {
             <div className="mt-4 h-px w-16 bg-gradient-to-r from-[#e93d59] to-transparent" />
           </div>
 
-          {/* Masonry-style Grid */}
+          {/* Grid — 4 cols × 5 rows, uniform cells */}
           <div
             ref={gridRef}
-            className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+            style={{ gridAutoRows: "1fr" }}
           >
-            {imageFiles.map((src, i) => (
+            {imageFiles.slice(0, 20).map((src, i) => (
               <div
                 key={i}
                 onClick={() => setLightbox(i)}
-                className="gallery-item break-inside-avoid rounded-xl overflow-hidden
-                  cursor-pointer group relative"
+                className="gallery-item rounded-xl overflow-hidden
+                  cursor-pointer group relative aspect-square"
               >
                 <img
                   src={src}
                   alt={`Gallery ${i + 1}`}
                   loading="lazy"
-                  className="w-full object-cover transition-transform duration-700 ease-out
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out
                     group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">

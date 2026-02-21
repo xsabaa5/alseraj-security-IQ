@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   FaArrowLeft,
-  FaPhone,
+  FaWhatsapp,
   FaEnvelope,
   FaMapMarkerAlt,
   FaLinkedinIn,
@@ -40,7 +40,7 @@ export default function ContactUs() {
 
   const contactInfo = [
     {
-      icon: FaPhone,
+      icon: FaWhatsapp,
       title: t("contact.phone"),
       lines: ["00971 50 205 5730"],
     },
