@@ -43,6 +43,7 @@ export default function ContactUs() {
       icon: FaWhatsapp,
       title: t("contact.phone"),
       lines: ["00971 50 205 5730"],
+      href: "https://wa.me/971502055730",
     },
     {
       icon: FaEnvelope,
@@ -96,46 +97,53 @@ export default function ContactUs() {
         {/* Info Cards */}
         <div className="flex flex-col gap-6">
           {/* eslint-disable-next-line no-unused-vars */}
-          {contactInfo.map(({ icon: Icon, title, lines, link }) => (
-            <div
-              key={title}
-              className="flex items-start gap-5 p-6 rounded-xl border border-white/10
-                bg-white/3 hover:border-[#e93d59]/30 transition-all duration-300"
-            >
-              <div
-                className="w-12 h-12 rounded-full bg-[#e93d59]/15 flex items-center justify-center
-                  shrink-0"
+          {contactInfo.map(({ icon: Icon, title, lines, link, href }) => {
+            const Wrapper = href ? "a" : "div";
+            const wrapperProps = href
+              ? { href, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={title}
+                {...wrapperProps}
+                className="flex items-start gap-5 p-6 rounded-xl border border-white/10
+                  bg-white/3 hover:border-[#e93d59]/30 transition-all duration-300"
               >
-                <Icon className="text-[#e93d59] text-lg" />
-              </div>
-              <div>
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  {title}
-                </h3>
-                {lines.map((line) => (
-                  <p
-                    key={line}
-                    dir="ltr"
-                    className="text-gray-400 text-sm leading-relaxed rtl:text-right"
-                  >
-                    {line}
-                  </p>
-                ))}
-                {link && (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#e93d59] text-sm mt-2
-                      hover:underline"
-                  >
-                    <FaMapMarkedAlt />
-                    {link.label}
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
+                <div
+                  className="w-12 h-12 rounded-full bg-[#e93d59]/15 flex items-center justify-center
+                    shrink-0"
+                >
+                  <Icon className="text-[#e93d59] text-lg" />
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg mb-2">
+                    {title}
+                  </h3>
+                  {lines.map((line) => (
+                    <p
+                      key={line}
+                      dir="ltr"
+                      className="text-gray-400 text-sm leading-relaxed rtl:text-right"
+                    >
+                      {line}
+                    </p>
+                  ))}
+                  {link && (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-[#e93d59] text-sm mt-2
+                        hover:underline"
+                    >
+                      <FaMapMarkedAlt />
+                      {link.label}
+                    </a>
+                  )}
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
 
         {/* Google Map */}
