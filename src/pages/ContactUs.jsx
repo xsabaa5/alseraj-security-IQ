@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase";
 import {
   FaArrowLeft,
   FaPhone,
@@ -72,10 +70,12 @@ export default function ContactUs() {
     e.preventDefault();
     setStatus("sending");
     try {
-      await addDoc(collection(db, "contactMessages"), {
-        ...form,
-        createdAt: serverTimestamp(),
+      const res = await fetch("https://cms-api.alseraj.iq/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("Submission failed");
       setStatus("success");
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       setTimeout(() => setStatus("idle"), 5000);
@@ -251,20 +251,22 @@ export default function ContactUs() {
           />
           <button
             type="submit"
-            disabled={status === "sending"}
-            className="w-full py-4 rounded-lg bg-[#e93d59] hover:bg-[#d6324d]
-              text-white text-lg font-medium tracking-wide
+            disabled={status === "sending" || status === "success"}
+            className={`w-full py-4 rounded-lg text-white text-lg font-medium tracking-wide
               transition-all duration-300 cursor-pointer
-              disabled:opacity-60 disabled:cursor-not-allowed"
+              disabled:cursor-not-allowed ${
+                status === "success"
+                  ? "bg-green-500"
+                  : "bg-[#e93d59] hover:bg-[#d6324d] disabled:opacity-60"
+              }`}
           >
-            {status === "sending" ? t("contact.sending") : t("contact.send")}
+            {status === "sending"
+              ? t("contact.sending")
+              : status === "success"
+                ? t("contact.successMessage")
+                : t("contact.send")}
           </button>
 
-          {status === "success" && (
-            <p className="text-center text-green-400 text-sm mt-3">
-              {t("contact.successMessage")}
-            </p>
-          )}
           {status === "error" && (
             <p className="text-center text-red-400 text-sm mt-3">
               {t("contact.errorMessage")}
