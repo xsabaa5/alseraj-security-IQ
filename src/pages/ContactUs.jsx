@@ -5,7 +5,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import {
   FaArrowLeft,
-  FaWhatsapp,
+  FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
   FaLinkedinIn,
@@ -43,25 +43,25 @@ export default function ContactUs() {
 
   const contactInfo = [
     {
-      icon: FaWhatsapp,
-      title: t("contact.phone"),
-      lines: ["00971 50 205 5730"],
-      href: "https://wa.me/971502055730",
-    },
-    {
-      icon: FaEnvelope,
-      title: t("contact.email"),
-      lines: ["info@alseraj.ae"],
-      href: "mailto:info@alseraj.ae",
-    },
-    {
       icon: FaMapMarkerAlt,
       title: t("contact.location"),
       lines: [t("contact.locationLine1"), t("contact.locationLine2")],
       link: {
         label: t("contact.viewOnMap"),
-        href: "https://www.google.com/maps/search/8C97+JVV+Industrial+Area+6+Sharjah+UAE/@25.364658,55.4839139,12z",
+        href: "https://maps.app.goo.gl/m8BgpQwfMMnd3Am39",
       },
+    },
+    {
+      icon: FaPhone,
+      title: t("contact.phone"),
+      lines: ["+964 784 960 0500", "+964 780 335 6000", "+964 781 107 0090"],
+      href: "tel:+9647849600500",
+    },
+    {
+      icon: FaEnvelope,
+      title: t("contact.email"),
+      lines: ["info@alseraj.iq", "marketing@alseraj.iq"],
+      href: "mailto:info@alseraj.iq",
     },
   ];
 
@@ -167,7 +167,7 @@ export default function ContactUs() {
         <div className="rounded-xl overflow-hidden border border-white/10">
           <iframe
             title="Al Seraj Location"
-            src="https://maps.google.com/maps?q=8C97%2BJVV+Industrial+Area+6+Sharjah+UAE&z=17&output=embed"
+            src="https://maps.google.com/maps?q=33.3136875,44.4395625&z=17&output=embed"
             width="100%"
             height="100%"
             style={{
