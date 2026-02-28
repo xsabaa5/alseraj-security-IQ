@@ -14,10 +14,19 @@ import {
 const productLinks = [
   { labelKey: "navProducts.drones", to: "/products?category=drones" },
   { labelKey: "navProducts.cyber", to: "/cyber-security" },
-  { labelKey: "navProducts.xray", to: "/products?category=security-inspection" },
+  {
+    labelKey: "navProducts.xray",
+    to: "/products?category=security-inspection",
+  },
   { labelKey: "navProducts.fixedWing", to: "/products?category=fixed-wing" },
-  { labelKey: "navProducts.thermalCamera", to: "/products?category=thermal-cameras" },
-  { labelKey: "navProducts.crimeScene", to: "/products?category=crime-scene-investigation" },
+  {
+    labelKey: "navProducts.thermalCamera",
+    to: "/products?category=thermal-cameras",
+  },
+  {
+    labelKey: "navProducts.crimeScene",
+    to: "/products?category=crime-scene-investigation",
+  },
 ];
 
 const companyLinks = [
@@ -26,14 +35,21 @@ const companyLinks = [
   { key: "footer.careers", to: "/coming-soon" },
   { key: "footer.privacy", to: "/coming-soon" },
   { key: "footer.terms", to: "/coming-soon" },
+  { key: "footer.blog", to: "/coming-soon" },
 ];
 
 const socials = [
-  { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/34934372/admin/feed/posts/" },
+  {
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/company/34934372/admin/feed/posts/",
+  },
   { icon: FaYoutube, href: "https://www.youtube.com/@alserajcompany2735" },
   { icon: FaFacebookF, href: "https://www.facebook.com/Alseraj.almodeeh/" },
   { icon: FaInstagram, href: "https://www.instagram.com/alseraj.co/" },
-  { icon: FaTiktok, href: "https://www.tiktok.com/@alseraj.almodeeh?_t=8ocPGrrxWwk&_r=1" },
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@alseraj.almodeeh?_t=8ocPGrrxWwk&_r=1",
+  },
 ];
 
 export default function Footer() {
@@ -80,19 +96,17 @@ export default function Footer() {
                 className="h-10 w-auto mb-5"
               />
             </Link>
-            <p className="text-gray-500 text-sm mb-8">
-              {t("footer.tagline")}
-            </p>
+            <p className="text-gray-500 text-sm mb-8">{t("footer.tagline")}</p>
             <div className="flex gap-4">
-              {socials.map(({ icon: Icon, href }, i) => (
+              {socials.map((social, i) => (
                 <a
                   key={i}
-                  href={href}
+                  href={social.href}
                   className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center
                     text-gray-400 hover:text-[#e93d59] hover:border-[#e93d59]/40
                     transition-all duration-300"
                 >
-                  <Icon className="text-base" />
+                  <social.icon className="text-base" />
                 </a>
               ))}
             </div>
@@ -144,9 +158,23 @@ export default function Footer() {
         <div className="h-px w-full bg-white/10 mb-6 footer-animate" />
 
         {/* Bottom */}
-        <p className="text-gray-300 text-s footer-animate">
-          &copy; {new Date().getFullYear()} {t("footer.copyright")}
-        </p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 footer-animate">
+          <p className="text-gray-300 text-s">
+            &copy; {new Date().getFullYear()} {t("footer.copyright")}
+          </p>
+          <p className="text-gray-400 text-sm">
+            {t("footer.poweredBy")}{" "}
+            <a
+              href="https://torchcorp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white font-bold tracking-wider hover:text-[#e93d59] transition-colors duration-300"
+              style={{ fontFamily: "Chromia, sans-serif" }}
+            >
+              TORCHCORP
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -5,6 +5,12 @@
   font-weight: 500;
   font-style: normal;
 }
+@font-face {
+  font-family: "Chromia";
+  src: url("./assets/Fonts/Chromia-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
