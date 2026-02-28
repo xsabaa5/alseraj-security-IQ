@@ -1,7 +1,7 @@
 services:
-  alseraj-ae-website:
+  alseraj-security-website:
     build: .
-    container_name: alseraj-ae-website
+    container_name: alseraj-security-website
     restart: unless-stopped
     networks:
       - traefik-network
@@ -13,10 +13,13 @@ services:
       retries: 3
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.alseraj-ae-website.rule=Host(`alseraj.ae`) || Host(`www.alseraj.ae`)"
-      - "traefik.http.routers.alseraj-ae-website.entrypoints=websecure"
-      - "traefik.http.routers.alseraj-ae-website.tls.certresolver=letsencrypt"
-      - "traefik.http.services.alseraj-ae-website.loadbalancer.server.port=80"
+      - "traefik.http.routers.alseraj-security-website-http.rule=Host(`security.alseraj.iq`)"
+      - "traefik.http.routers.alseraj-security-website-http.entrypoints=web"
+      - "traefik.http.routers.alseraj-security-website-http.middlewares=redirect-web-to-websecure@internal"
+      - "traefik.http.routers.alseraj-security-website.rule=Host(`security.alseraj.iq`)"
+      - "traefik.http.routers.alseraj-security-website.entrypoints=websecure"
+      - "traefik.http.routers.alseraj-security-website.tls.certresolver=letsencrypt"
+      - "traefik.http.services.alseraj-security-website.loadbalancer.server.port=80"
 
 networks:
   traefik-network:
