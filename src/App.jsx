@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, startTransition } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Lenis from "lenis";
@@ -128,12 +128,12 @@ function App() {
 
   // Show loader on every route change, hide when assets are ready
   useEffect(() => {
-    setPageLoading(true);
+    startTransition(() => setPageLoading(true));
     waitForAssets().then(() => setPageLoading(false));
   }, [location.pathname, location.search]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden font-Montserrat">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <PageLoader loading={pageLoading} />
       {!isComingSoon && !isContact && <Navbar />}
       <Routes>

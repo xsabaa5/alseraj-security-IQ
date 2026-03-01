@@ -162,13 +162,14 @@ export default function Footer() {
           <p className="text-gray-300 text-s">
             &copy; {new Date().getFullYear()} {t("footer.copyright")}
           </p>
-          <p className="text-gray-400 text-sm">
-            {t("footer.poweredBy")}{" "}
+          <p className="text-gray-400 text-base tracking-wide">
+            {t("footer.poweredBy")}
+            {""}
             <a
               href="https://torchcorp.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white font-bold tracking-wider hover:text-[#e93d59] transition-colors duration-300"
+              className="text-white font-bold tracking-widest hover:text-[#A561FFFF] transition-colors duration-300 ml-2"
               style={{ fontFamily: "Chromia, sans-serif" }}
             >
               TORCHCORP
