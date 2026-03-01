@@ -1,6 +1,6 @@
 services:
   alseraj-security-website:
-    build: .
+    image: ghcr.io/xsabaa5/alseraj-security-iq:latest
     container_name: alseraj-security-website
     restart: unless-stopped
     networks:
