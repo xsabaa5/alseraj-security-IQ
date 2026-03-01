@@ -17,7 +17,7 @@ function About() {
       return text.split(" ").map((word, wordIndex, arr) => (
         <span key={wordIndex}>
           <span className="char inline-block">{word}</span>
-          {wordIndex < arr.length - 1 && <span className="char inline">&nbsp;</span>}
+          {wordIndex < arr.length - 1 && <span className="char inline"> </span>}
         </span>
       ));
     }
